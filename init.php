@@ -1,11 +1,16 @@
 <?php 
 require 'vendor/autoload.php';
+include 'Classes/Users.php';
+//connection to the server
 $connection = new MongoDB\Client;
-//$connection = new MongoDB\Client("mongodb://localhost:27017");
-//$collection = new MongoDB\Collection($manager, "logs","capped_logs");
+//connection to the database
+$db = $connection->bookstore;
+//connection to the collection users
+$collection_users = $db->users;
 
-var_dump($connection);
+$userClass = new Users($collection_users);
 
+//var_dump($userClass->getCollection());
 ?>
 
 
