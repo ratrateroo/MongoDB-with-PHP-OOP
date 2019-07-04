@@ -24,5 +24,7 @@ class Users {
             'email'=>$email,
             'admin'=> 'no'
             ]);
+        //
+        $_SESSION['user_id'] = $document->getInsertedId();
     }
 }

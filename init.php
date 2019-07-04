@@ -1,4 +1,5 @@
 <?php 
+session_start();
 require 'vendor/autoload.php';
 include 'Classes/Users.php';
 //connection to the server

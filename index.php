@@ -16,6 +16,7 @@
 </head>
 
 <?php 
+  include 'init.php';
   include 'modals.php';
 ?>
 
