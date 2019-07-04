@@ -27,4 +27,17 @@ class Users {
         //
         $_SESSION['user_id'] = $document->getInsertedId();
     }
+
+    public function userData($userId){
+        $document = $this->collection_users->findOne(["_id" => new MongoDB\BSON\ObjectId($userId)]);
+        return $document;
+    }
+
+    public function logout() {
+
+        $_SESSION = array();
+        session_destroy();
+        header('Location: index.php');
+        
+    }
 }

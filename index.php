@@ -18,6 +18,18 @@
 <?php 
   include 'init.php';
   include 'modals.php';
+
+  if(isset($_SESSION['user_id'])) {
+    //var_dump($_SESSION['user_id']);
+  }
+
+  if(isset($_SESSION['user_id'])) {
+    
+    $userData = $userClass->userData($_SESSION['user_id']);
+    var_dump($userData);
+  }
+
+
 ?>
 
 <body>
@@ -34,10 +46,12 @@
       <li><a href="#">Admin Panel</a></li>
       <li><a data-toggle="modal" data-target="#registerModal" href="#">Register</a></li>
       <li><a data-toggle="modal" data-target="#loginModal" id="loginModal" href="#"> Login </a></li>
-      <li><a href="#" ><span id="cart" class="glyphicon glyphicon-shopping-cart my-cart-icon"><span class="badge badge-notify my-cart-badge" id="shopcart"> </span>
+      <li><a href="#" ><span id="cart" class="glyphicon glyphicon-shopping-cart my-cart-icon">&nbsp;<span class="badge badge-notify my-cart-badge" id="shopcart"> </span>
       </span></a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span></a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-user">&nbsp;</span><?php 
+      echo isset($userData) ? $userData->username : '';
+      ?></a></li>
+      <li><a href="logout.php"><span class="glyphicon glyphicon-log-out">&nbsp;</span>Logout</a></li>
     </ul>
    
     <form method="post"  class="navbar-form navbar-left" action="">
