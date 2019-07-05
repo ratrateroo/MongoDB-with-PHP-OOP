@@ -26,7 +26,7 @@
   if(isset($_SESSION['user_id'])) {
     
     $userData = $userClass->userData($_SESSION['user_id']);
-    var_dump($userData);
+    //var_dump($userData);
   }
 
 
@@ -43,9 +43,15 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
 
-      <li><a href="#">Admin Panel</a></li>
-      <li><a data-toggle="modal" data-target="#registerModal" href="#">Register</a></li>
-      <li><a data-toggle="modal" data-target="#loginModal" id="loginModal" href="#"> Login </a></li>
+      <li><a <?php 
+      echo isset($_SESSION['admin_id']) ? 'data-toggle="modal" data-target="#adminModal"' : '';
+      ?> href="#">Admin Panel</a></li>
+      <li><a <?php 
+      echo isset($_SESSION['user_id']) ? '' : 'data-toggle="modal" data-target="#registerModal"';
+      ?> href="#">Register</a></li>
+      <li><a <?php 
+      echo isset($_SESSION['user_id']) ? '' : 'data-toggle="modal" data-target="#loginModal"';
+      ?> id="loginModal" href="#"> Login </a></li>
       <li><a href="#" ><span id="cart" class="glyphicon glyphicon-shopping-cart my-cart-icon">&nbsp;<span class="badge badge-notify my-cart-badge" id="shopcart"> </span>
       </span></a></li>
       <li><a href="#"><span class="glyphicon glyphicon-user">&nbsp;</span><?php 

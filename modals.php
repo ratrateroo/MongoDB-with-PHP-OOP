@@ -37,7 +37,38 @@
   </div>
 </div>
 
+<?php 
+  
+  $status = (isset($_POST['admin'])) ? 'admin' : 'notadmin';
 
+  if(isset($_POST['login'])) {
+    $username = $userClass->checkInput($_POST['username']);
+    $password = $userClass->checkInput($_POST['password']);
+    if(empty($username) || empty($password)) {
+      $error = true;
+      echo "<script>
+      $(document).ready(function(){
+        $('#errorModalLogin').modal('show');
+      });
+    </script>";
+    }
+    else {
+      switch ($status) {
+        case 'admin':
+          $userClass->checkAdmin($username, $password);
+          break;
+        
+        case 'notadmin':
+          $userClass->login($username, $password);
+          break;
+        default: '';
+          break;
+      }
+      
+
+    }
+  }
+?>
 
 
 
@@ -117,6 +148,27 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Create Your Account</h4>
+      </div>
+      <div class="modal-body">
+        <p> All fields are required !!! <p>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Ok, i got the ideea </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--error modal for login-->
+<div id="errorModalLogin" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content login-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Login Error</h4>
       </div>
       <div class="modal-body">
         <p> All fields are required !!! <p>
