@@ -23,4 +23,10 @@ foreach($document as $val) {
 
 // var_dump($document);
 
-echo date('Y-m-d', 1562355453);
+//echo date('Y-m-d', 1562355453);
+
+//test if not match book - if null
+
+$document = $collection_books->findOne(["bookTitle" => "book1","bookCategory" => "action"],['projection' => ['_id' => 1]]);
+
+    var_dump($document);

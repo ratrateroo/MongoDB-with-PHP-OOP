@@ -150,7 +150,7 @@
 
                       <div class="form-group">
                         <label for="title">INSERT NEW BOOK TITLE:</label>
-                        <input type="text" class="form-control" name="book">
+                        <input type="text" class="form-control" name="title">
                       </div>
                       <div class="form-group">
                         <label for="category">BOOK CATEGORY:</label>
