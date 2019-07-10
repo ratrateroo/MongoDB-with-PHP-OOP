@@ -52,7 +52,11 @@
       <li><a <?php 
       echo isset($_SESSION['user_id']) ? '' : 'data-toggle="modal" data-target="#loginModal"';
       ?> id="loginModal" href="#"> Login </a></li>
-      <li><a href="#" ><span id="cart" class="glyphicon glyphicon-shopping-cart my-cart-icon">&nbsp;<span class="badge badge-notify my-cart-badge" id="shopcart"> </span>
+      <li><a href="#" ><span id="cart" class="glyphicon glyphicon-shopping-cart my-cart-icon">&nbsp;<span class="badge badge-notify my-cart-badge" id="shopcart">
+      <?php 
+      echo isset($_SESSION['order']) ? count($_SESSION['order']) : '';
+      ?>
+      </span>
       </span></a></li>
       <li><a href="#"><span class="glyphicon glyphicon-user">&nbsp;</span><?php 
       echo isset($userData) ? $userData->username : '';
@@ -135,9 +139,10 @@
 	</div>
 
 
+<script src="./js/ajax_search.js"></script>
+<script src="./js/ajax_cart.js"></script>
 </body>
 </html>
-<script src="./js/ajax_search.js"></script>
 
 
 

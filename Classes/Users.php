@@ -37,8 +37,15 @@ class Users {
 
     public function logout() {
 
-        $_SESSION = array();
+        // $_SESSION = array();
+        // session_destroy();
+        // 
+
+        //session_start();
+        setcookie(session_name(), '', 100);
+        session_unset();
         session_destroy();
+        $_SESSION = array();
         header('Location: index.php');
         
     }

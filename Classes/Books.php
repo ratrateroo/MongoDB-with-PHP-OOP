@@ -64,7 +64,12 @@ class Books {
                     <br>
                     <strong> Price: &euro;". $value->bookPrice . "</strong>
                     <br>
-                    <button class='col-md-5 btn btn-danger btn-sm' role='button'> Buy </button>
+                    <button 
+                        class='col-md-5 btn btn-danger btn-sm' 
+                        role='button' 
+                        value=" . $value->_id . "
+                        onclick='ajaxBuy(this.value)'
+                        > Buy </button>
                     <button class='col-md-5 btn btn-info btn-sm' role='button' style='float: right;'> Info </button>
 
                 </div>";
@@ -76,6 +81,16 @@ class Books {
             ['projection' => ['bookTitle' => 1, '_id' => 0]]);
 
             return $query;
+        }
+
+        public function findBookById($id) {
+            $dataBook = $this->collection_books->findOne(['_id' => new MongoDB\BSON\ObjectID($id)], ['projection' => ['bookImage' => 0]]);
+
+            // foreach($dataBook as $value) {
+            //     return [$value->_id, $value->bookTitle, $value->bookPrice, 1];
+            // }
+
+            return [$dataBook->_id, $dataBook->bookTitle, $dataBook->bookPrice, 1];
         }
 }
 ?>

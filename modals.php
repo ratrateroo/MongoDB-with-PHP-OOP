@@ -247,3 +247,24 @@
   </div>
 </div>
 
+<!--error modal for login-->
+<div id="loginWarning" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content login-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">User not logged in.</h4>
+      </div>
+      <div class="modal-body">
+        <p> You need to be logged in to buy!!! <p>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Ok, i got the ideea </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
