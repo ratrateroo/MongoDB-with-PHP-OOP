@@ -15,5 +15,7 @@ if(isset($_POST['insert_book'])) {
             $_FILES['cover_img']['tmp_name']
         );
     }
+
+    header('Location: ../index.php');
 }
 ?>

@@ -83,12 +83,34 @@
       <h4 >Categories</h4>
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="#section1"></a></li>
-        <li><a href="#"> All </a></li>
+        <li><a href="http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php"> All </a></li>
+        <?php 
+          $query =$collection_books->find([],
+          ['projection' => ['bookCategory' => 1, '_id' => 0]]);
+
+          
+
+          $distint = $collection_books->distinct('bookCategory', $query);
+
+          foreach($distint as $value) {
+            echo "<li><a href='http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php?category=$value'>" . $value . "</a></li>";
+          }
+        ?>
       </ul><br>
     </div>
 <!--end left side bar categories-->
 
+<!-- rows for displaying books -->
+<?php 
+          $category = (isset($_GET['category'])) ? $_GET['category'] : '';
 
+          echo "<div class='row'>";
+
+          $booksClass->display($category);
+
+          echo "</div>";
+?>
+<!-- end  for displaying books -->
 <!--arrows - pagination-->
  <div  id="arrowsContainer" >
     <div id="arrows">
