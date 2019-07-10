@@ -63,7 +63,10 @@
     <form method="post"  class="navbar-form navbar-left" action="">
       <div class="form-group">
       <div class="ui-widget">
-        <input type="text" class="form-control" placeholder="Search" name="search" list="languages" id="searchBar">        
+        <input type="text" class="form-control" placeholder="Search" name="search" list="searchedBooks" id="searchBar">
+        <datalist id="searchedBooks">
+          
+        </datalist>
       <button type="submit" class="btn btn-success" name="search_call"><span class="glyphicon glyphicon-search"></span></button>
       </div>
       </div>
@@ -104,7 +107,7 @@
 <?php 
           $category = (isset($_GET['category'])) ? $_GET['category'] : '';
 
-          echo "<div class='row'>";
+          echo "<div class='row' style='margin-bottom: 40px;'>";
 
           $booksClass->display($category);
 
@@ -132,9 +135,11 @@
 	</div>
 
 
-
 </body>
 </html>
+<script src="./js/ajax_search.js"></script>
+
+
 
 
 

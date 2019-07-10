@@ -41,4 +41,15 @@ $document = $collection_books->findOne(["bookTitle" => "book1","bookCategory" =>
           foreach($distint as $value) {
             var_dump($value);
           }
+
+
+
+          //Regex search
+          $search = 'prince';
+          $searched_result = $collection_books->find(['bookTitle' => new MongoDB\BSON\Regex($search, 'i')], ['projection' => ['bookTitle' => 1, '_id' => 0]]);
+
+          foreach($searched_result as $value) {
+            print_r($value);
+          }
+
         ?>

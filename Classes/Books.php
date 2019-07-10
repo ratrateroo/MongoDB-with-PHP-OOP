@@ -65,10 +65,17 @@ class Books {
                     <strong> Price: &euro;". $value->bookPrice . "</strong>
                     <br>
                     <button class='col-md-5 btn btn-danger btn-sm' role='button'> Buy </button>
-                    <button class='col-md-5 btn btn-info btn-sm' role='button' style='float: right;'> Description </button>
+                    <button class='col-md-5 btn btn-info btn-sm' role='button' style='float: right;'> Info </button>
 
                 </div>";
             }
+        }
+
+        public function search($search) {
+            $query = $this->collection_books->find(['bookTitle' => new MongoDB\BSON\Regex($search, 'i')], 
+            ['projection' => ['bookTitle' => 1, '_id' => 0]]);
+
+            return $query;
         }
 }
 ?>
