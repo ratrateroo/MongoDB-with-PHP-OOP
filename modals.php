@@ -187,7 +187,7 @@
 
 
 <!-- ORDERS Modal -->
-<div id="ordersModal" class="modal fade" role="dialog">
+<div id="ordersModal" class="modal fade" role="dialog"  data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog">
 
     <!-- Modal content ADMIN-->
@@ -201,6 +201,50 @@
 
                       <div class="form-group"  style="overflow: scroll; height: 300px;">
                         <label for="title">All the books:</label><br>
+                          <table id="table" class="table table-hover table-fixed">
+                            <tr>
+                              <th>Title</th>
+                              <th>Quantity</th>
+                              <th>Price</th>
+                              <th>Erase</th>
+                            </tr>
+                           
+                            <?php 
+
+                            if(isset($_SESSION['order'])) {
+
+                              $totalTablePrice = array();
+
+                              foreach($_SESSION['order'] as $val) {
+
+                                array_push($totalTablePrice, $ordersClass->getTotals($val[2], $val[3]));
+
+
+                                echo '<tr>
+                                        <td>'. $val[1] .'</td>
+                                        <td>'. $val[3] .'</td>
+                                        <td>&euro; '. $val[2] .'</td>
+                                        <td 
+                                        type="button" 
+                                        id="'. $val[0] .'"
+                                        price="'. $val[2] .'"
+                                        class="remove btn btn-danger"
+
+                                        >Remove</td>
+                                      </tr>';
+                              }
+                            }
+
+                            
+                            ?>
+                            <tr>
+                              <td><strong>Total</strong></td>
+                              <td>Quantity</td>
+                              <td>&euro;<strong id="total"> <?php echo isset($_SESSION['order']) ? array_sum($totalTablePrice) : '';  ?> </strong></td>
+                              <td></td>
+                            </tr>
+                            
+                          </table>
                       </div>
                   
       </div>
@@ -213,6 +257,22 @@
 
   </div>
 </div>
+
+<script>
+  $(document).ready(function(){
+    $(".remove").click(function(){
+      var item_price = $(this).attr("price");
+      var bookId = $(this).attr("id");
+      var total = $("#total").text();
+
+      var total_sum = total - item_price;
+
+      $(this).closest("tr").remove();
+      $("#total").text(total_sum);
+      console.log(item_price, bookId, total);
+    });
+  });
+</script>
   
 
  <!--Confirmation Modal-->

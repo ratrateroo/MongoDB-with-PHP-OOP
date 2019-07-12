@@ -52,9 +52,12 @@
       <li><a <?php 
       echo isset($_SESSION['user_id']) ? '' : 'data-toggle="modal" data-target="#loginModal"';
       ?> id="loginModal" href="#"> Login </a></li>
-      <li><a href="#" ><span id="cart" class="glyphicon glyphicon-shopping-cart my-cart-icon">&nbsp;<span class="badge badge-notify my-cart-badge" id="shopcart">
+
+      <li><a href="http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php?show=modal" rel="keep-params"
+      data-controls-modal="#ordersModal" ><span id="cart" class="glyphicon glyphicon-shopping-cart my-cart-icon">&nbsp;<span class="badge badge-notify my-cart-badge" id="shopcart">
       <?php 
       echo isset($_SESSION['order']) ? count($_SESSION['order']) : '';
+      echo isset($_GET['show']) ? '<script>$("#ordersModal").modal("show");</script>':'';
       ?>
       </span>
       </span></a></li>
@@ -141,6 +144,8 @@
 
 <script src="./js/ajax_search.js"></script>
 <script src="./js/ajax_cart.js"></script>
+<script src="./js/keep_params.js"></script>
+<script src="./js/prevent_modal_close.js"></script>
 </body>
 </html>
 

@@ -1,3 +1,5 @@
+<!-- server response to ajax -->
+<!-- backend response or server script -->
 <?php 
 include '../init.php';
 
