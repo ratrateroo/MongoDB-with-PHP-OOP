@@ -269,11 +269,22 @@
 
       $(this).closest("tr").remove();
       $("#total").text(total_sum);
-      console.log(item_price, bookId, total);
+      
+      $.post('http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php', {remove_id: bookId}, function(data){
+
+      });
     });
   });
 </script>
+<?php 
+
+if (isset($_POST['remove_id'])) {
+  //remove from SESSION['order']
+  $orderClass->removeBook($_SESSION['order'], $_POST['remove_id']);
   
+}
+
+?>
 
  <!--Confirmation Modal-->
 

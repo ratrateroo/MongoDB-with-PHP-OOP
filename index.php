@@ -144,8 +144,8 @@
 
 <script src="./js/ajax_search.js"></script>
 <script src="./js/ajax_cart.js"></script>
-<script src="./js/keep_params.js"></script>
-<script src="./js/prevent_modal_close.js"></script>
+<!-- <script src="./js/keep_params.js"></script> -->
+<!-- <script src="./js/prevent_modal_close.js"></script> -->
 </body>
 </html>
 
