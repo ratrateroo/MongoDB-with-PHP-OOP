@@ -21,6 +21,6 @@ $userClass = new Users($collection_users);
 $booksClass = new Books($collection_books);
 $ordersClass = new Orders($collection_orders);
 //var_dump($userClass->getCollection());
-?>
+
 
 

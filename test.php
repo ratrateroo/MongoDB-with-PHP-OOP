@@ -52,4 +52,29 @@ $document = $collection_books->findOne(["bookTitle" => "book1","bookCategory" =>
             print_r($value);
           }
 
+          echo "<br>";
+          echo "<br>";
+          echo "<pre>";
+          print_r($_SESSION['order']);
+          echo "<pre>";
+
+          echo "<pre>";
+          var_dump($_SESSION['order'][0]);
+
+
+          echo "<pre>";
+
+
+         //$insert = $collection_orders->insertOne(["customerID" => "test", "totalPrice" => ["value1"]]);
+
+          // $insert - $collection_orders->FindOneAndUpdate(["customerID" => "test"], ['$set' => ["totalPrice" => "value3"]]);
+
+          //$insert - $collection_orders->FindOneAndUpdate(["customerID" => "test"], ['$push' => ["totalPrice" => ["nested as array"]]]);
+
+          //$insert - $collection_orders->FindOneAndUpdate(["customerID" => "test"], ['$push' => ["totalPrice.1" => ["nested as value"]]]);
+
+          $find = $collection_orders->findOne(["customerID" => "test"]);
+
+          echo $find->totalPrice[1][3][0];
+
         ?>

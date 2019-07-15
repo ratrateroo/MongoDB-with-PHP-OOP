@@ -26,6 +26,7 @@ function ajaxBuy(value) {
             console.log(response);   
                 if(response.trim() == "unregistered") {
                     $("#loginWarning").modal('show');
+                    console.log(response.trim());
                 } else {
                     
                     $("#shopcart").html(response);

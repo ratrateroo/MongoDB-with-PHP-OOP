@@ -14,12 +14,12 @@
         <form action="" method="post">
 
                       <div class="form-group">
-                        <label for="email">Username:</label>
-                        <input type="text" class="form-control" id="username" name="username">
+                        <label for="loginusername">Username:</label>
+                        <input type="text" class="form-control" id="loginusername" name="loginusername">
                       </div>
                       <div class="form-group">
-                        <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="pwd" name="password">
+                        <label for="loginpassword">Password:</label>
+                        <input type="password" class="form-control" id="loginpassword" name="loginpassword">
                       </div>
                       <div class="checkbox">
                         <label>
@@ -58,16 +58,26 @@
         <form action="" method="post">
 
                       <div class="form-group">
-                        <label for="email">Choose Username:</label>
+                        <label for="username">Choose Username:</label>
                         <input type="text" class="form-control" id="username" name="username">
                       </div>
                       <div class="form-group">
-                        <label for="pwd">Choose Password:</label>
-                        <input type="password" class="form-control" id="pwd" name="password">
+                        <label for="password">Choose Password:</label>
+                        <input type="password" class="form-control" id="password" name="password">
                       </div>
                       <div class="form-group">
-                        <label for="pwd">Enter E-mail:</label>
-                        <input type="text" class="form-control" id="pwd" name = "email">
+                        <label for="email">Enter E-mail:</label>
+                        <input type="text" class="form-control" id="email" name = "email">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="country">Country:</label>
+                        <input type="text" class="form-control" id="country" name="country">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="addresss">Address:</label>
+                        <input type="text" class="form-control" id="addresss" name="addresss">
                       </div>
                   
       </div>
@@ -186,8 +196,8 @@
 
 
 
-<!-- ORDERS Modal -->
-<div id="ordersModal" class="modal fade" role="dialog"  data-backdrop="static" data-keyboard="false">
+<!-- ORDERS Modal data-backdrop="static" data-keyboard="false"-->
+<div id="ordersModal" class="modal fade" role="dialog"  >
   <div class="modal-dialog">
 
     <!-- Modal content ADMIN-->
@@ -210,7 +220,7 @@
                             </tr>
                            
                             <?php 
-
+                            
                             if(isset($_SESSION['order'])) {
 
                               $totalTablePrice = array();
@@ -240,7 +250,10 @@
                             <tr>
                               <td><strong>Total</strong></td>
                               <td>Quantity</td>
-                              <td>&euro;<strong id="total"> <?php echo isset($_SESSION['order']) ? array_sum($totalTablePrice) : '';  ?> </strong></td>
+                              <td>&euro;<strong id="total"> <?php echo isset($_SESSION['order']) ? array_sum($totalTablePrice) : ''; 
+                              $_SESSION['totalPrice'] = isset($_POST['total']) ? $_POST['total']: array_sum($totalTablePrice);
+                              
+                              ?> </strong></td>
                               <td></td>
                             </tr>
                             
@@ -250,7 +263,7 @@
       </div>
       <div class="modal-footer">
           <button type="submit" class="btn btn-default" name="empty_cart" value="Submit" >Empty Cart</button>
-          <button type="submit" class="btn btn-default" name = "newOrder" value="Submit">Confirm Order</button>
+          <button type="submit" class="btn btn-default" name ="newOrder" value="Submit">Confirm Order</button>
         </form>
       </div>
     </div>
@@ -260,6 +273,15 @@
 
 <script>
   $(document).ready(function(){
+
+    $("#ordersModal").on('hide.bs.modal', function() {
+      // location.replace("http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php");
+      window.location.replace("http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php");
+      
+     
+    });
+
+
     $(".remove").click(function(){
       var item_price = $(this).attr("price");
       var bookId = $(this).attr("id");
@@ -267,23 +289,52 @@
 
       var total_sum = total - item_price;
 
+      console.log({remove_id: bookId});
+      
       $(this).closest("tr").remove();
       $("#total").text(total_sum);
       
-      $.post('http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php', {remove_id: bookId}, function(data){
+      
 
-      });
+        
+            $.ajax({
+                url: "http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php",
+                type: "post",
+                data: {remove_id: bookId, total: total_sum},
+                success: function (response) {
+                    console.log(response);   
+                                    
+
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus, errorThrown);
+                }
+
+
+            });
+        
+
+
+
+
+
+
     });
   });
 </script>
 <?php 
 
-if (isset($_POST['remove_id'])) {
-  //remove from SESSION['order']
-  $orderClass->removeBook($_SESSION['order'], $_POST['remove_id']);
-  
-}
+  if (isset($_POST['remove_id'])) {
+    
+    //remove from SESSION['order']
+    $ordersClass->removeBook($_SESSION['order'], $_POST['remove_id']);
+    
+  }
 
+?>
+
+<?php 
+$finalUserData = isset($_SESSION['user_id']) ? $userClass->userData($_SESSION['user_id']): '';
 ?>
 
  <!--Confirmation Modal-->
@@ -297,26 +348,38 @@ if (isset($_POST['remove_id'])) {
         <h4 class="modal-title">Confirmation Order Modal</h4>
       </div>
       <div class="modal-body">
-        <form action="ajax/refresh_index.php" method="post">
+        
 
                       <div class="form-group">
-                        <label for="userData">Thank you!</label><br>
+                        <label for="userData">Dear <?php echo $finalUserData->username; ?> Thank you for buying from us.</label><br>
                       </div>
 
                       <div class="form-group">
-                        <label for="address">Shipping Address</label><br>
+                        <label for="address">Shipping Address: <?php 
+                        echo $finalUserData->country . " " . $finalUserData->address;
+                        ?></label><br>
                       </div>
                       <div class="form-group">
-                        <label for="total">Total Price</label><br>
+                        <label for="total">Total Price: <?php echo $_SESSION['totalPrice']; ?></label><br>
                       </div>
       </div>
       <div class="modal-footer">
-          <button type="submit" class="btn btn-default" name ="ok" value="Submit">OK</button>
-        </form>
+          <button type="button" class="btn btn-default" name ="ok" data-dismiss="modal">OK</button>
+        
       </div>
     </div>
   </div>
 </div>
+
+<script>
+
+$("#confirmationMdal").on('hide.bs.modal', function() {
+      
+      window.location.replace("http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/admin/unset.php")
+     
+    });
+
+</script>
 
 <!--error modal for login-->
 <div id="loginWarning" class="modal fade" role="dialog">

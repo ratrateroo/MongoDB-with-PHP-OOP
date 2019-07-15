@@ -18,4 +18,3 @@ if(isset($_POST['insert_book'])) {
 
     header('Location: ../index.php');
 }
-?>

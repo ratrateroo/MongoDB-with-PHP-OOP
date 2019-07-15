@@ -8,4 +8,3 @@ if(isset($_POST['data_to_send']) && ($_POST['data_to_send'] != " ")) {
         echo $book->bookTitle . ";";
     }
 }
-?>

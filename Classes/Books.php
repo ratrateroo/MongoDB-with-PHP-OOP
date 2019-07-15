@@ -93,4 +93,3 @@ class Books {
             return [$dataBook->_id, $dataBook->bookTitle, $dataBook->bookPrice, 1];
         }
 }
-?>

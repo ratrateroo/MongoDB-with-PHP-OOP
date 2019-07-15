@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 	<title>E-BookStore</title>
 <meta name= "viewport" content = "width = device-width, initial-scale = 1.0, user-scalable = yes">
-<link rel="stylesheet" type="text/css" href="/Mongo/style.css">
+<!-- <link rel="stylesheet" type="text/css" href="/Mongo/style.css"> -->
 	<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- jQuery library -->
@@ -17,17 +17,19 @@
 
 <?php 
   include 'init.php';
+  include 'admin/orders.php';
   include 'modals.php';
-
-  if(isset($_SESSION['user_id'])) {
+  //if(isset($_SESSION['user_id'])) {
     //var_dump($_SESSION['user_id']);
-  }
+  //}
 
   if(isset($_SESSION['user_id'])) {
     
     $userData = $userClass->userData($_SESSION['user_id']);
-    //var_dump($userData);
-  }
+    //var_dump($userData->country);
+  } 
+
+  
 
 
 ?>
@@ -57,14 +59,18 @@
       data-controls-modal="#ordersModal" ><span id="cart" class="glyphicon glyphicon-shopping-cart my-cart-icon">&nbsp;<span class="badge badge-notify my-cart-badge" id="shopcart">
       <?php 
       echo isset($_SESSION['order']) ? count($_SESSION['order']) : '';
-      echo isset($_GET['show']) ? '<script>$("#ordersModal").modal("show");</script>':'';
+      echo isset($_GET['show']) && $_SESSION['order']? '<script>$("#ordersModal").modal("show");</script>':'';
       ?>
       </span>
       </span></a></li>
       <li><a href="#"><span class="glyphicon glyphicon-user">&nbsp;</span><?php 
-      echo isset($userData) ? $userData->username : '';
+      echo isset($userData) ? $userData->username : 'No User';
       ?></a></li>
-      <li><a href="logout.php"><span class="glyphicon glyphicon-log-out">&nbsp;</span>Logout</a></li>
+      <?php 
+        
+          echo isset($_SESSION['user_id']) ? '<li><a href="logout.php"><span class="glyphicon glyphicon-log-out">&nbsp;</span>Logout</a></li>' : '';
+        
+      ?>
     </ul>
    
     <form method="post"  class="navbar-form navbar-left" action="">

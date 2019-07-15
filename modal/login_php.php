@@ -2,8 +2,8 @@
 $status = (isset($_POST['admin'])) ? 'admin' : 'notadmin';
 
 if(isset($_POST['login'])) {
-  $username = $userClass->checkInput($_POST['username']);
-  $password = $userClass->checkInput($_POST['password']);
+  $username = $userClass->checkInput($_POST['loginusername']);
+  $password = $userClass->checkInput($_POST['loginpassword']);
   if(empty($username) || empty($password)) {
     $error = true;
     echo "<script>
@@ -28,4 +28,3 @@ if(isset($_POST['login'])) {
 
   }
 }
-?>

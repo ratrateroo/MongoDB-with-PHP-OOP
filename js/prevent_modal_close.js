@@ -1,1 +1,1 @@
-$("#ordersModal").modal({backdrop: "static",keyboard: false});
+// $("#ordersModal").modal({backdrop: "static",keyboard: false});

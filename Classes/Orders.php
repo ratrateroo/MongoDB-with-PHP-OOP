@@ -15,11 +15,14 @@ class Orders {
 
         foreach ($array as $key=>$value) {
             
-            if(in_array($id, $value)) {
+            //if(in_array($id, $value)) 
+            if($id == $value[0])
+            {
+                //if($id == $value[0])
                 unset($array[$key]);
+                $_SESSION = array();
                 break;
             }
         }
     }
 }
-?>

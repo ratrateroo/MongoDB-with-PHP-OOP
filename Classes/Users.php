@@ -16,12 +16,14 @@ class Users {
         return $var;
     }
 
-    public function register($username, $password, $email) {
+    public function register($username, $password, $email, $country, $address) {
 
         $document = $this->collection_users->insertOne([
             'username'=>$username,
             'password'=>$password,
             'email'=>$email,
+            'country' => $country,
+            'address' => $address,
             'admin'=> 'no',
             'created_at' => new MongoDB\BSON\UTCDateTime(),
             'UNIX_time' => (new MongoDB\BSON\ObjectID())->getTimestamp()
@@ -37,11 +39,11 @@ class Users {
 
     public function logout() {
 
-        // $_SESSION = array();
-        // session_destroy();
-        // 
+        /* $_SESSION = array();
+        session_destroy();
+        
 
-        //session_start();
+        session_start(); */
         setcookie(session_name(), '', 100);
         session_unset();
         session_destroy();
