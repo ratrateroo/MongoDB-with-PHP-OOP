@@ -165,25 +165,69 @@ $(".titles").hover(
 
 
 
-<!--arrows - pagination-->
- <div  id="arrowsContainer" >
-    <div id="arrows">
-     <a class="btn btn-info btn-lg" href="http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php<?php echo $moveLeft; ?>" >
-          <span class="glyphicon glyphicon-chevron-left"></span>
-        </a> 
 
-
-        <a class="btn btn-info btn-lg" style="float:right;" href="http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php<?php echo $moveRight; ?>" >
-          <span class="glyphicon glyphicon-chevron-right"></span> 
-        </a>
-    </div>
-</div>
 
 
 <!--footer-->
       
 
   <div class="navbar navbar-default navbar-fixed-bottom">
+
+<!--arrows - pagination-->
+<div  id="arrowsContainer" >
+    <div id="arrows">
+     <a id="singlebutton" name="singlebutton" class="btn btn-primary" href="http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php<?php echo $moveLeft; ?>" >
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a> 
+        <?php 
+
+ 
+// if not on page 1, don't show back links
+if ($currentpage > 1) {
+  // show << link to go back to page 1
+  echo " <a id='singlebutton' name='singlebutton' class='btn btn-primary' href='{$_SERVER['PHP_SELF']}?page=1'><<</a> ";
+  // get previous page num
+  $prevpage = $currentpage - 1;
+  // show < link to go back to 1 page
+  echo " <a id='singlebutton' name='singlebutton' class='btn btn-primary' href='{$_SERVER['PHP_SELF']}?page=$prevpage'><</a> ";
+} // end if 
+
+// loop to show links to range of pages around current page
+for ($x = ($currentpage - $range); $x < (($currentpage + $range) + 1); $x++) {
+  // if it's a valid page number...
+  if (($x > 0) && ($x <= $maxPages)) {
+     // if we're on current page...
+     if ($x == $currentpage) {
+        // 'highlight' it but don't make a link
+        echo " <a id='singlebutton' name='singlebutton' class='btn btn-danger' href='{$_SERVER['PHP_SELF']}?page=$x'>$x</a> ";
+     // if not current page...
+     } else {
+        // make it a link
+        echo " <a id='singlebutton' name='singlebutton' class='btn btn-primary' href='{$_SERVER['PHP_SELF']}?page=$x'>$x</a> ";
+     } // end else
+  } // end if 
+} // end for
+
+// if not on last page, show forward and last page links        
+if ($currentpage != $maxPages) {
+  // get next page
+  $nextpage = $currentpage + 1;
+   // echo forward link for next page 
+  echo " <a id='singlebutton' name='singlebutton' class='btn btn-primary' href='{$_SERVER['PHP_SELF']}?page=$nextpage'>></a> ";
+  // echo forward link for lastpage
+  echo " <a id='singlebutton' name='singlebutton' class='btn btn-primary' href='{$_SERVER['PHP_SELF']}?page=$maxPages'>>></a> ";
+}
+?>
+
+
+
+        <a id="singlebutton" name="singlebutton" class="btn btn-primary"  href="http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php<?php echo $moveRight; ?>" >
+          <span class="glyphicon glyphicon-chevron-right"></span> 
+        </a>
+    </div>
+</div>
+
+
     <div class="container">
     <p class="navbar-text pull-left"> Company Name. Copyright &copy; 2016 - 2018</p>
     </div>

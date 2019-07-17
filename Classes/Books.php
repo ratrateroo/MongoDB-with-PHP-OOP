@@ -61,7 +61,7 @@ class Books {
 
             
 
-            foreach($queryBooks as $value) {
+            foreach($queryBooks as $id => $value) {
                 $title = (strlen($value->bookTitle) <= 16) ? $value->bookTitle : substr($value->bookTitle, 0, 16). "...";
                 $picture = $value->bookImage;
                 echo "<div class='col-md-2' style='width: 170px; margin-top:30px;'>
@@ -71,13 +71,14 @@ class Books {
                         class='titles' 
                         title='". $value->bookTitle ."'
                         style='display:block;height:20px;'> ".  $title . "</strong>
+                    
                     <br>
                     <strong> Price: &euro;". $value->bookPrice . "</strong>
                     <br>
                     <button 
                         class='col-md-5 btn btn-danger btn-sm' 
                         role='button' 
-                        value=" . $value->_id . "
+                        value='". $value->_id. "'
                         onclick='ajaxBuy(this.value)'
                         > Buy </button>
                     <button 

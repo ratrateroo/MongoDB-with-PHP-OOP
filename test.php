@@ -78,15 +78,23 @@ $document = $collection_books->findOne(["bookTitle" => "book1","bookCategory" =>
           //echo $find->totalPrice[1][3][0];
 
           echo "<br>";
-
           $cursorPage = $collection_books->find([], ['limit' => 5, 'skip' => 0, 'sort' => ['bookTitle' => 1]]);
+          $cursorPage = $collection_books->find([], []);
 
           foreach($cursorPage as $val) {
             echo '<h1>';
             echo $val->bookTitle;
             echo '</h1>';
+            
           }
+          echo '<h1>';
+          echo $collection_books->count($cursorPage);
+          echo '</h1>';
 
+          
 
+          echo '<h1>';
+          echo $_SERVER['PHP_SELF'];
+          echo '</h1>';
 
         ?>
