@@ -120,11 +120,18 @@
 <?php 
 
           include 'ajax/pagination.php';
+          if(isset($_POST['search'])) {
+            $whatToDisplay = $booksClass->searchButton($_POST['search']);
+
+          } else {
+            $whatToDisplay = $cursorPage;
+          }
+          
           $category = (isset($_GET['category'])) ? $_GET['category'] : '';
 
           echo "<div class='row' style='margin-bottom: 40px;'>";
 
-          $booksClass->display($category, $cursorPage);
+          $booksClass->display($category, $whatToDisplay);
 
           echo "</div>";
 ?>

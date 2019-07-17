@@ -48,13 +48,18 @@ class Books {
 
         public function display($category = '', $cursor = NULL) {
 
-            if($category == '') {
+            if($category == '' && is_null($cursor)) {
                 $queryBooks = $this->collection_books->find([],['sort'=> ['bookTitle' => 1]]);
-            } else {
+            } 
+            else if($category != '') {
                 $queryBooks = $this->collection_books->find(['bookCategory' => $category], ['sort'=> ['bookTitle' => 1]]);
             }
 
-            if (!is_null($cursor)) $queryBooks = $cursor;
+            else if (!is_null($cursor)) {
+                $queryBooks = $cursor;
+            }
+
+            
 
             foreach($queryBooks as $value) {
                 $title = (strlen($value->bookTitle) <= 10) ? $value->bookTitle : substr($value->bookTitle, 0, 10). "...";
@@ -93,5 +98,12 @@ class Books {
             // }
 
             return [$dataBook->_id, $dataBook->bookTitle, $dataBook->bookPrice, 1];
+        }
+
+        public function searchButton($search) {
+            $regex = new MongoDB\BSON\Regex($search, 'i');
+            $result = $this->collection_books->find(['bookTitle' => $regex]);
+
+            return $result;
         }
 }
