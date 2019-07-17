@@ -135,6 +135,25 @@
 
           echo "</div>";
 ?>
+<script>
+$(document).ready(function(){
+  $('[data-toggle="popover"]').popover(); 
+});
+
+$(".titles").hover(
+  function(){
+  var fullTitle = $(this).attr("title");
+  $(this).text(fullTitle);
+  },
+  function(){
+  var shortTitle = $(this).text();
+  if(shortTitle.length >= 16){
+    shortTitle.substring(0, 16) + "..."
+  }
+  $(this).text(shortTitle);
+});
+</script>
+
 <!-- end  for displaying books -->
 
 <?php 
@@ -162,15 +181,13 @@
 
 
 <!--footer-->
-      <div class = "footer" style="margin-top: 100px; height:40px;" > 
-				<p> Company Name. Copyright &copy; 2016 - 2018 <?php echo $page; ?></p>
-        <p> Current Page: <?php echo $page; ?></p>
-        <p> Move Left:  <?php echo $moveLeft; ?></p>
-        <p> Move Right:  <?php echo $moveRight;$maxPages ?></p>
-        <p> Max Pages:  <?php echo $maxPages ?></p>
-			</div>
-		
-	</div>
+      
+
+  <div class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+    <p class="navbar-text pull-left"> Company Name. Copyright &copy; 2016 - 2018</p>
+    </div>
+</div>
 
 
 <script src="./js/ajax_search.js"></script>
