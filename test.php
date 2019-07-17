@@ -75,6 +75,18 @@ $document = $collection_books->findOne(["bookTitle" => "book1","bookCategory" =>
 
           $find = $collection_orders->findOne(["customerID" => "test"]);
 
-          echo $find->totalPrice[1][3][0];
+          //echo $find->totalPrice[1][3][0];
+
+          echo "<br>";
+
+          $cursorPage = $collection_books->find([], ['limit' => 5, 'skip' => 0, 'sort' => ['bookTitle' => 1]]);
+
+          foreach($cursorPage as $val) {
+            echo '<h1>';
+            echo $val->bookTitle;
+            echo '</h1>';
+          }
+
+
 
         ?>

@@ -77,7 +77,7 @@
 
                       <div class="form-group">
                         <label for="addresss">Address:</label>
-                        <input type="text" class="form-control" id="addresss" name="addresss">
+                        <input type="text" class="form-control" id="addresss" name="address">
                       </div>
                   
       </div>

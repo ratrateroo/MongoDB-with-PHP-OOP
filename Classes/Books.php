@@ -46,16 +46,18 @@ class Books {
             
         }
 
-        public function display($category = '') {
+        public function display($category = '', $cursor = NULL) {
 
             if($category == '') {
-                $queryBooks = $this->collection_books->find();
+                $queryBooks = $this->collection_books->find([],['sort'=> ['bookTitle' => 1]]);
             } else {
-                $queryBooks = $this->collection_books->find(['bookCategory' => $category]);
+                $queryBooks = $this->collection_books->find(['bookCategory' => $category], ['sort'=> ['bookTitle' => 1]]);
             }
 
+            if (!is_null($cursor)) $queryBooks = $cursor;
+
             foreach($queryBooks as $value) {
-                $title = (strlen($value->bookTitle) <= 17) ? $value->bookTitle : substr($value->bookTitle, 0, 17). "...";
+                $title = (strlen($value->bookTitle) <= 10) ? $value->bookTitle : substr($value->bookTitle, 0, 10). "...";
                 $picture = $value->bookImage;
                 echo "<div class='col-md-2' style='width: 170px; margin-top:30px;'>
                     <img src='data:jpeg;base64,". base64_encode($picture->getData()) ."' style='width:100%; height:150px'>

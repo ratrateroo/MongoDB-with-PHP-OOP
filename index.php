@@ -118,22 +118,36 @@
 
 <!-- rows for displaying books -->
 <?php 
+
+          include 'ajax/pagination.php';
           $category = (isset($_GET['category'])) ? $_GET['category'] : '';
 
           echo "<div class='row' style='margin-bottom: 40px;'>";
 
-          $booksClass->display($category);
+          $booksClass->display($category, $cursorPage);
 
           echo "</div>";
 ?>
 <!-- end  for displaying books -->
+
+<?php 
+
+
+?>
+
+
+
+
+
 <!--arrows - pagination-->
  <div  id="arrowsContainer" >
     <div id="arrows">
-     <a class="btn btn-info btn-lg" href="#" >
+     <a class="btn btn-info btn-lg" href="http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php<?php echo $moveLeft; ?>" >
           <span class="glyphicon glyphicon-chevron-left"></span>
         </a> 
-        <a class="btn btn-info btn-lg" style="float:right;" href="#" >
+
+
+        <a class="btn btn-info btn-lg" style="float:right;" href="http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php<?php echo $moveRight; ?>" >
           <span class="glyphicon glyphicon-chevron-right"></span> 
         </a>
     </div>
@@ -142,7 +156,11 @@
 
 <!--footer-->
       <div class = "footer" style="margin-top: 100px; height:40px;" > 
-				<p> Company Name. Copyright &copy; 2016 - 2018 </p>
+				<p> Company Name. Copyright &copy; 2016 - 2018 <?php echo $page; ?></p>
+        <p> Current Page: <?php echo $page; ?></p>
+        <p> Move Left:  <?php echo $moveLeft; ?></p>
+        <p> Move Right:  <?php echo $moveRight;$maxPages ?></p>
+        <p> Max Pages:  <?php echo $maxPages ?></p>
 			</div>
 		
 	</div>
