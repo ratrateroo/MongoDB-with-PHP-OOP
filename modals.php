@@ -1,41 +1,5 @@
 
-<!-- LOGIN Modal -->
-<div id="loginModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
 
-
-    <!-- Modal content login-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Login with username and password</h4>
-      </div>
-      <div class="modal-body">
-        <form action="" method="post">
-
-                      <div class="form-group">
-                        <label for="loginusername">Username:</label>
-                        <input type="text" class="form-control" id="loginusername" name="loginusername">
-                      </div>
-                      <div class="form-group">
-                        <label for="loginpassword">Password:</label>
-                        <input type="password" class="form-control" id="loginpassword" name="loginpassword">
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                        <input type="checkbox" name="admin" value = "yes"> Login as admin 
-                        </label>
-                      </div>
-      </div>
-      <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-default" name ="login" value="Submit">Submit</button>
-        </form>
-      </div>
-    </div>
-
-  </div>
-</div>
 
 <!-- MDB Modals ------------------------------------------------------------------------------------------------------------------------->
 
@@ -54,13 +18,13 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <i class="fas fa-user prefix grey-text"></i>
-          <input type="text" id="orangeForm-name" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-name">Username</label>
+          <input type="text" class="form-control " id="loginusername" name="loginusername" required>
+          <label  for="loginusername">Username</label>
         </div>
         <div class="md-form mb-4">
           <i class="fas fa-lock prefix grey-text"></i>
-          <input type="password" id="orangeForm-pass" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass">Password</label>
+          <input type="password" class="form-control " id="loginpassword" name="loginpassword" required>
+          <label  for="loginpassword">Password</label>
         </div>
         <div class="custom-control custom-checkbox">
           <input type="checkbox" class="custom-control-input" id="defaultUnchecked" name="admin" value="yes">
@@ -68,13 +32,17 @@
         </div>        
       </div>
       <div class="modal-footer d-flex justify-content-center">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#errorModalLogin">Launch demo modal</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-deep-orange">Submit</button>
+        <button type="submit" class="btn btn-deep-orange" name="login" value="Submit" id="login" >Submit</button>
       </div>
     </div>
   </div>
 </div>
 
+<!--      PHP Login Modal Start -->
+<?php include 'modal/login_php.php'; ?>
+<!--      PHP Login Modal End   -->
 <!--    Login End  ========================================================================================================================-->
 
 <!--    Register Start ====================================================================================================================-->
@@ -92,130 +60,47 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <i class="fas fa-user prefix grey-text"></i>
-          <input type="text" id="orangeForm-name" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-name">Username</label>
+          <input type="text" class="form-control validate" id="username" name="username">
+          <label data-error="wrong" data-success="right" for="username" >Username</label>
         </div>
         <div class="md-form mb-4">
           <i class="fas fa-lock prefix grey-text"></i>
-          <input type="password" id="orangeForm-pass" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass">Password</label>
+          <input type="password" class="form-control validate" id="password" name="password">
+          <label data-error="wrong" data-success="right" for="password">Password</label>
         </div>
         <div class="md-form mb-5">
           <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" id="orangeForm-email" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-email">Email</label>
+          <input type="email" class="form-control validate" id="email" name="email">
+          <label data-error="wrong" data-success="right" for="email">Email</label>
         </div>
         <div class="md-form mb-5">
         <i class="fas fa-flag prefix grey-text"></i>
-          <input type="text" id="orangeForm-name" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-name">Country</label>
+          <input type="text" class="form-control validate" id="country" name="country">
+          <label data-error="wrong" data-success="right" for="country">Country</label>
         </div>
         <div class="md-form mb-5">
         <i class="fas fa-map-marker-alt prefix grey-text"></i>
-          <input type="text" id="orangeForm-name" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-name">Address</label>
+          <input type="text" class="form-control validate" id="addresss" name="address">
+          <label data-error="wrong" data-success="right" for="addresss">Address</label>
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-deep-orange">Submit</button>
+        <button type="submit" class="btn btn-deep-orange" name="register" value="Submit">Submit</button>
       </div>
     </div>
   </div>
 </div>
-<!--      PHP Register Modal -->
+<!--      PHP Register Modal Start -->
           <?php include 'modal/register_php.php'; ?>
-<!--      End of PHP Regieter Modal -->
+<!--      PHP Register Modal End   -->
 <!--    Register End ======================================================================================================================-->
+
+
+
 <!-- MDB Modals ------------------------------------------------------------------------------------------------------------------------->
 
-<?php 
-  
-  include 'modal/login_php.php';
-?>
-
-
-
-<!-- REGISGTER Modal -->
-<div id="registerModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content login-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Create Your Account</h4>
-      </div>
-      <div class="modal-body">
-        <form action="" method="post">
-
-                      <div class="form-group">
-                        <label for="username">Choose Username:</label>
-                        <input type="text" class="form-control" id="username" name="username">
-                      </div>
-                      <div class="form-group">
-                        <label for="password">Choose Password:</label>
-                        <input type="password" class="form-control" id="password" name="password">
-                      </div>
-                      <div class="form-group">
-                        <label for="email">Enter E-mail:</label>
-                        <input type="text" class="form-control" id="email" name = "email">
-                      </div>
-
-                      <div class="form-group">
-                        <label for="country">Country:</label>
-                        <input type="text" class="form-control" id="country" name="country">
-                      </div>
-
-                      <div class="form-group">
-                        <label for="addresss">Address:</label>
-                        <input type="text" class="form-control" id="addresss" name="address">
-                      </div>
-                  
-      </div>
-      <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-default" name = "register" value="Submit">Submit</button>
-        </form>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- PHP Register Modal -->
-
-<?php 
-
- include 'modal/register_php.php';
-
-?>
-
-<!-- End of PHP Regieter Modal -->
-
-<!--error modal-->
-<div id="errorModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content login-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Create Your Account</h4>
-      </div>
-      <div class="modal-body">
-        <p> All fields are required !!! <p>
-      </div>
-      <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Ok, i got the ideea </button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!--error modal for login-->
-<div id="errorModalLogin" class="modal fade" role="dialog">
+<div id="" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content login-->
@@ -234,6 +119,33 @@
 
   </div>
 </div>
+
+<div class="modal fade" id="errorModalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login Error</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p> All fields are required !!! <p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok, i got the ideea </button>        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
 
 
 

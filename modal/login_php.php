@@ -11,6 +11,8 @@ if(isset($_POST['login'])) {
       $('#errorModalLogin').modal('show');
     });
   </script>";
+
+  
   }
   else {
     switch ($status) {
@@ -28,3 +30,5 @@ if(isset($_POST['login'])) {
 
   }
 }
+
+
