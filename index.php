@@ -68,14 +68,17 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Admin Panel</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Register</a>
+
+          
+          <!-- Register Nav with Modal -->
+          <li class="nav-item">        
+            <a href="" class="nav-link" <?php  echo isset($_SESSION['user_id']) ? '' : 'data-toggle="modal" data-target="#modalRegisterForm"';?>>Register</a>
           </li>
+
+          
+          <!-- Login Nav with Modal -->
           <li class="nav-item">
-            <a class="nav-link" href="#">Register</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
+            <a href="" class="nav-link" <?php echo isset($_SESSION['user_id']) ? '' : 'data-toggle="modal" data-target="#modalLoginForm"'; ?>>Login</a>
           </li>
 
           <li class="nav-item">
@@ -116,7 +119,7 @@
       ?> href="#">Admin Panel</a></li>
       <li><a <?php 
       echo isset($_SESSION['user_id']) ? '' : 'data-toggle="modal" data-target="#registerModal"';
-      ?> href="#">Register</a></li>
+      ?> href="#">Register</a></li> 
       <li><a <?php 
       echo isset($_SESSION['user_id']) ? '' : 'data-toggle="modal" data-target="#loginModal"';
       ?> id="loginModal" href="#"> Login </a></li>
