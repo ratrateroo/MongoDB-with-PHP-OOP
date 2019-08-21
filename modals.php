@@ -16,6 +16,10 @@
         </button>
       </div>
       <div class="modal-body mx-3">
+
+      <form action="" method="post" enctype="multipart/form-data">
+
+                      
         <div class="md-form mb-5">
           <i class="fas fa-user prefix grey-text"></i>
           <input type="text" class="form-control " id="loginusername" name="loginusername" required>
@@ -29,12 +33,14 @@
         <div class="custom-control custom-checkbox">
           <input type="checkbox" class="custom-control-input" id="defaultUnchecked" name="admin" value="yes">
           <label class="custom-control-label" for="defaultUnchecked">Login as Admin</label>
-        </div>        
+        </div> 
+           
       </div>
       <div class="modal-footer d-flex justify-content-center">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#errorModalLogin">Launch demo modal</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         <button type="submit" class="btn btn-deep-orange" name="login" value="Submit" id="login" >Submit</button>
+        </form> 
       </div>
     </div>
   </div>
@@ -96,6 +102,150 @@
 <!--      PHP Register Modal End   -->
 <!--    Register End ======================================================================================================================-->
 
+<!--    Admin Start ======================================================================================================================-->
+
+<div class="modal fade" id="modalAdminFrom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold"><i class="fas fa-book mr-2"></i>Add a new book</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <form class="text-center border border-light p-5" action="admin/books_admin.php" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <div class="md-form mb-5">
+              <i class="fas fa-user prefix grey-text"></i>
+              <input type="text" class="form-control " id="title" name="title" required>
+              <label  for="title">INSERT NEW BOOK TITLE:</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="md-form mb-5">
+              <i class="fas fa-user prefix grey-text"></i>
+              <input type="text" class="form-control " id="category" name="category" required>
+              <label  for="category">BOOK CATEGORY:</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="md-form mb-5">
+              <i class="fas fa-user prefix grey-text"></i>
+              <input type="text" class="form-control " id="author" name="author" required>
+              <label  for="author">BOOK AUTHOR:</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="md-form mb-5">
+              <i class="fas fa-user prefix grey-text"></i>
+              <input type="text" class="form-control " id="price" name="price" required>
+              <label  for="price">BOOK PRICE:</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="md-form mb-5">
+              <i class="fas fa-user prefix grey-text"></i>
+              <input type="text" class="form-control " id="description" name="description" required>
+              <label  for="description">BOOK DESCRIPTION:</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="md-form mb-5">
+              <i class="fas fa-user prefix grey-text"></i>
+              <input type="text" class="form-control " id="cover_img" name="cover_img" required>
+              <label  for="cover_img">BOOK IMAGE:</label>
+            </div>
+          </div>
+
+          <!-- Material input -->
+<div class="md-form">
+  <i class="fas fa-user prefix"></i>
+  <input type="text" id="inputIconEx2" class="form-control">
+  <label for="inputIconEx2">E-mail address</label>
+</div>
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+            </div>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="inputGroupFile01"
+                aria-describedby="inputGroupFileAddon01">
+              <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            </div>
+          </div>
+
+
+
+        </form>                
+      </div>
+      <div class="modal-footer d-flex justify-content-center">      
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-deep-orange" name="insert_book" value="Submit" id="insert_book" >Insert</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div id="" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content ADMIN-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Admin Modal</h4>
+      </div>
+      <div class="modal-body">
+        <form action="admin/books_admin.php" method="post" enctype="multipart/form-data">
+
+                      <div class="form-group">
+                        <label for="title">INSERT NEW BOOK TITLE:</label>
+                        <input type="text" class="form-control" name="title">
+                      </div>
+                      <div class="form-group">
+                        <label for="category">BOOK CATEGORY:</label>
+                        <input type="text" class="form-control" name="category">
+                      </div>
+                      <div class="form-group">
+                        <label for="author">BOOK AUTHOR:</label>
+                        <input type="text" class="form-control" name="author">
+                      </div>
+                      <div class="form-group">
+                        <label for="amount">BOOK PRICE: </label>
+                        <input type="text" class="form-control" name = "price">
+                      </div>
+                      <div class="form-group">
+                        <label for="amount">BOOK DESCRIPTION: </label>
+                        <input type="text" class="form-control" name = "description">
+                      </div>
+                      <div class="form-group">
+                        <label for="amount">BOOK IMG: </label>
+                        <input type="file" class="form-control" name = "cover_img">
+                      </div>
+                  
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+          <button type="submit" class="btn btn-default" name = "insert_book" value="Submit">INSERT</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--    Admin End ======================================================================================================================-->
 
 
 <!-- MDB Modals ------------------------------------------------------------------------------------------------------------------------->
@@ -149,54 +299,7 @@
 
 
 
-<!-- ADMIN Modal -->
-<div id="adminModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
 
-    <!-- Modal content ADMIN-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Admin Modal</h4>
-      </div>
-      <div class="modal-body">
-        <form action="admin/books_admin.php" method="post" enctype="multipart/form-data">
-
-                      <div class="form-group">
-                        <label for="title">INSERT NEW BOOK TITLE:</label>
-                        <input type="text" class="form-control" name="title">
-                      </div>
-                      <div class="form-group">
-                        <label for="category">BOOK CATEGORY:</label>
-                        <input type="text" class="form-control" name="category">
-                      </div>
-                      <div class="form-group">
-                        <label for="author">BOOK AUTHOR:</label>
-                        <input type="text" class="form-control" name="author">
-                      </div>
-                      <div class="form-group">
-                        <label for="amount">BOOK PRICE: </label>
-                        <input type="text" class="form-control" name = "price">
-                      </div>
-                      <div class="form-group">
-                        <label for="amount">BOOK DESCRIPTION: </label>
-                        <input type="text" class="form-control" name = "description">
-                      </div>
-                      <div class="form-group">
-                        <label for="amount">BOOK IMG: </label>
-                        <input type="file" class="form-control" name = "cover_img">
-                      </div>
-                  
-      </div>
-      <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
-          <button type="submit" class="btn btn-default" name = "insert_book" value="Submit">INSERT</button>
-        </form>
-      </div>
-    </div>
-
-  </div>
-</div>
 
 
 
@@ -400,6 +503,29 @@ $("#confirmationMdal").on('hide.bs.modal', function() {
       </div>
       <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Ok, i got the ideea </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<!--modal for not logged in as admin-->
+<div id="loginWarningAdmin" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content login-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Not logged in as admin.</h4>
+      </div>
+      <div class="modal-body">
+        <p> You have to login as an admin. <p>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
       </div>
     </div>
 

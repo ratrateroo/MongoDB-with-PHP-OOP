@@ -50,7 +50,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark elegant-color">
 
       <!-- Navbar brand -->
-      <a class="navbar-brand" href="#">Marcus Bookstore</a>
+      <a class="navbar-brand" href="oldindex.php">Marcus Bookstore</a>
 
       <!-- Collapse button -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false"
@@ -68,20 +68,22 @@
               <span class="sr-only">(current)</span>
             </a>
           </li>
+
+          
           <li class="nav-item">
-            <a class="nav-link" href="#">Admin Panel</a>
+            <a href="#" class="nav-link"  <?php echo isset($_SESSION['admin_id']) ? 'data-toggle="modal" data-target="#modalAdminFrom"' : ''; ?>>Admin Panel</a>
           </li>
 
           
           <!-- Register Nav with Modal -->
           <li class="nav-item">        
-            <a href="" class="nav-link" <?php  echo isset($_SESSION['user_id']) ? '' : 'data-toggle="modal" data-target="#modalRegisterForm"';?>>Register</a>
+            <a href="#" class="nav-link" <?php  echo isset($_SESSION['user_id']) ? '' : 'data-toggle="modal" data-target="#modalRegisterForm"';?>>Register</a>
           </li>
 
           
           <!-- Login Nav with Modal -->
           <li class="nav-item">
-            <a href="" class="nav-link" <?php echo isset($_SESSION['user_id']) ? '' : 'data-toggle="modal" data-target="#modalLoginForm"'; ?>>Login</a>
+            <a href="#" class="nav-link" <?php echo isset($_SESSION['user_id']) ? '' : 'data-toggle="modal" data-target="#modalLoginForm"'; ?>>Login</a>
           </li>
 
           <li class="nav-item">
@@ -89,8 +91,15 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-user mr-1"></i>No User</a>
+            <a class="nav-link" href="#"><i class="fas fa-user mr-1"></i><span class="glyphicon glyphicon-user">&nbsp;</span><?php echo isset($userData) ? $userData->username : 'No User';?></a>
           </li>
+
+         
+          <?php 
+        
+        echo isset($_SESSION['user_id']) ? '<li class="nav-item" ><a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt mr-1"></i>Logout</a></li>' : '';
+      
+    ?>
 
 
 
@@ -108,6 +117,8 @@
     </nav>
     <!--/.Navbar--------------------------------------------------------------------------------------------------------->
 
+    
+
 <!--navigation-->
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -118,7 +129,7 @@
       <li class="active"><a href="#">Home</a></li>
 
       <li><a <?php 
-      echo isset($_SESSION['admin_id']) ? 'data-toggle="modal" data-target="#adminModal"' : '';
+      echo isset($_SESSION['admin_id']) ? 'data-toggle="modal" data-target="#adminModal"' : 'data-toggle="modal" data-target="#loginWarningAdmin"';
       ?> href="#">Admin Panel</a></li>
       <li><a <?php 
       echo isset($_SESSION['user_id']) ? '' : 'data-toggle="modal" data-target="#registerModal"';

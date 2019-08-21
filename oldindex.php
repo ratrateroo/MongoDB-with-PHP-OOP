@@ -21,7 +21,7 @@
   include 'init.php';
   include 'admin/orders.php';
   include 'oldmodals.php';
-  //include 'oldmodals.php';
+  
   //if(isset($_SESSION['user_id'])) {
     //var_dump($_SESSION['user_id']);
   //}
@@ -52,7 +52,7 @@
       <li class="active"><a href="#">Home</a></li>
 
       <li><a <?php 
-      echo isset($_SESSION['admin_id']) ? 'data-toggle="modal" data-target="#adminModal"' : '';
+      echo isset($_SESSION['admin_id']) ? 'data-toggle="modal" data-target="#adminModal"' : 'data-toggle="modal" data-target="#loginWarningAdmin"';
       ?> href="#">Admin Panel</a></li>
       <li><a <?php 
       echo isset($_SESSION['user_id']) ? '' : 'data-toggle="modal" data-target="#registerModal"';
@@ -69,6 +69,7 @@
       ?>
       </span>
       </span></a></li>
+      
       <li><a href="#"><span class="glyphicon glyphicon-user">&nbsp;</span><?php 
       echo isset($userData) ? $userData->username : 'No User';
       ?></a></li>
