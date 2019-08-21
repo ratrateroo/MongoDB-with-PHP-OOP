@@ -202,7 +202,7 @@
         <h4 class="modal-title">Orders Modal</h4>
       </div>
       <div class="modal-body">
-        <form action="index.php" method="post" enctype="multipart/form-data">
+        <form action="oldindex.php" method="post" enctype="multipart/form-data">
 
                       <div class="form-group"  style="overflow: scroll; height: 300px;">
                         <label for="title">All the books:</label><br>
@@ -271,7 +271,7 @@
 
     $("#ordersModal").on('hide.bs.modal', function() {
       // location.replace("http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php");
-      window.location.replace("http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php");
+      window.location.replace("http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/oldindex.php");
       
      
     });
@@ -293,7 +293,7 @@
 
         
             $.ajax({
-                url: "http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php",
+                url: "http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/oldindex.php",
                 type: "post",
                 data: {remove_id: bookId, total: total_sum},
                 success: function (response) {

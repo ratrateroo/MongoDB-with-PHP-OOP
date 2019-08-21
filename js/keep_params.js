@@ -1,5 +1,5 @@
 // all <a> tags containing a certain rel=""
-$("a[rel~='keep-params']").click(function(e) {
+/* $("a[rel~='keep-params']").click(function(e) {
     e.preventDefault();
 
     var params = window.location.search;
@@ -10,4 +10,4 @@ $("a[rel~='keep-params']").click(function(e) {
     window.setTimeout(function() {
         window.location.href = dest;
     }, 100);
-});
+}); */

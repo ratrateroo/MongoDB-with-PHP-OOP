@@ -69,9 +69,9 @@
             </a>
           </li>
 
-          
+          <!-- Admin Nav with Modal -->
           <li class="nav-item">
-            <a href="#" class="nav-link"  <?php echo isset($_SESSION['admin_id']) ? 'data-toggle="modal" data-target="#modalAdminFrom"' : ''; ?>>Admin Panel</a>
+            <a href="#" class="nav-link"  <?php echo isset($_SESSION['admin_id']) ? 'data-toggle="modal" data-target="#modalAdminForm"' : 'data-toggle="modal" data-target="#loginWarningAdmin"'; ?>>Admin Panel</a>
           </li>
 
           
@@ -86,32 +86,66 @@
             <a href="#" class="nav-link" <?php echo isset($_SESSION['user_id']) ? '' : 'data-toggle="modal" data-target="#modalLoginForm"'; ?>>Login</a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-cart-arrow-down"></i></a>
-          </li>
+          
+
+          
 
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-user mr-1"></i><span class="glyphicon glyphicon-user">&nbsp;</span><?php echo isset($userData) ? $userData->username : 'No User';?></a>
+            <a class="nav-link" href="" data-toggle="modal" data-target="#ordersCartModal">
+              <i class="fas fa-cart-arrow-down">
+                <span class="badge badge-pill badge-danger" id="shopcart">
+                  <?php echo isset($_SESSION['order']) ? count($_SESSION['order']) : '';
+                        echo isset($_GET['show']) && $_SESSION['order']? '<script>$("#ordersModal").modal("show");</script>':'';?>
+                </span>
+              </i>
+            </a>
           </li>
 
-         
-          <?php 
-        
-        echo isset($_SESSION['user_id']) ? '<li class="nav-item" ><a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt mr-1"></i>Logout</a></li>' : '';
-      
-    ?>
+          <!-- Username when logged in -->
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-user mr-1"></i><span class="glyphicon glyphicon-user">&nbsp;</span><?php echo isset($userData) ? $userData->username : 'No User'; ?></a>
+          </li>
+
+         <!-- Logout Nav when user is logged in -->
+          <?php echo isset($_SESSION['user_id']) ? '<li class="nav-item" ><a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt mr-1"></i>Logout</a></li>' : ''; ?>
+
+     <!-- Username info show modal -->
+     <li class="nav-item">
+            <a class="nav-link" href="" data-toggle="modal" data-target="#userInfos"><i class="fas fa-user mr-1"></i><span class="glyphicon glyphicon-user">&nbsp;</span><?php echo isset($userData) ? $userData->username : 'No User';?> infos</a>
+          </li>
 
 
 
         </ul>
         <!-- Links -->
 
-        <form class="form-inline">
+        <form class="form-inline" method="post" action="">
           <div class="md-form my-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="search" list="searchedBooks" id="searchBar">
+            <datalist id="searchedBooks">          
+            </datalist>
           </div>
         </form>
+
+        <form method="post"   action="">
+          <div class="form-group">
+          <div class="ui-widget">
+            <input type="text" class="form-control" placeholder="Search" name="search" list="searchedBooks" id="searchBar">
+            <datalist id="searchedBooks">
+              
+            </datalist>
+          
+          </div>
+          </div>
+      
+        </form>  
       </div>
+
+
+      
+
+
+
       <!-- Collapsible content -->
 
     </nav>
@@ -138,11 +172,13 @@
       echo isset($_SESSION['user_id']) ? '' : 'data-toggle="modal" data-target="#loginModal"';
       ?> id="loginModal" href="#"> Login </a></li>
 
+      
+
       <li><a href="http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php?show=modal" rel="keep-params"
-      data-controls-modal="#ordersModal" ><span id="cart" class="glyphicon glyphicon-shopping-cart my-cart-icon">&nbsp;<span class="badge badge-notify my-cart-badge" id="shopcart">
+      data-controls-modal="#ordersModal"><span id="cart" class="glyphicon glyphicon-shopping-cart my-cart-icon">&nbsp;<span class="badge badge-notify my-cart-badge" id="shopcart">
       <?php 
       echo isset($_SESSION['order']) ? count($_SESSION['order']) : '';
-      echo isset($_GET['show']) && $_SESSION['order']? '<script>$("#ordersModal").modal("show");</script>':'';
+      echo isset($_GET['show']) && $_SESSION['order']? '<script>$("#ordersCartModal").modal("show");</script>':'';
       ?>
       </span>
       </span></a></li>
