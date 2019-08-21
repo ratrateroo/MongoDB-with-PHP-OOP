@@ -321,7 +321,7 @@
 
     $("#ordersCartModal").on('hide.bs.modal', function() {
       // location.replace("http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php");
-      window.location.replace("http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/oldindex.php");
+      window.location.replace("http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php");
       
      
     });
@@ -343,7 +343,7 @@
 
         
             $.ajax({
-                url: "http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/oldindex.php",
+                url: "http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php",
                 type: "post",
                 data: {remove_id: bookId, total: total_sum},
                 success: function (response) {
