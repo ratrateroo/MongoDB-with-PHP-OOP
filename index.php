@@ -218,11 +218,6 @@ $(".titles").hover(
 
 <!-- end  for displaying books -->
 
-<?php 
-
-
-?>
-
 
 
 
@@ -243,42 +238,42 @@ $(".titles").hover(
         </a> 
         <?php 
 
- 
-// if not on page 1, don't show back links
-if ($currentpage > 1) {
-  // show << link to go back to page 1
-  echo " <a id='singlebutton' name='singlebutton' class='btn btn-primary' href='{$_SERVER['PHP_SELF']}?page=1'><<</a> ";
-  // get previous page num
-  $prevpage = $currentpage - 1;
-  // show < link to go back to 1 page
-  echo " <a id='singlebutton' name='singlebutton' class='btn btn-primary' href='{$_SERVER['PHP_SELF']}?page=$prevpage'><</a> ";
-} // end if 
+              
+              // if not on page 1, don't show back links
+              if ($currentpage > 1) {
+                // show << link to go back to page 1
+                echo " <a id='singlebutton' name='singlebutton' class='btn btn-primary' href='{$_SERVER['PHP_SELF']}?page=1'><<</a> ";
+                // get previous page num
+                $prevpage = $currentpage - 1;
+                // show < link to go back to 1 page
+                echo " <a id='singlebutton' name='singlebutton' class='btn btn-primary' href='{$_SERVER['PHP_SELF']}?page=$prevpage'><</a> ";
+              } // end if 
 
-// loop to show links to range of pages around current page
-for ($x = ($currentpage - $range); $x < (($currentpage + $range) + 1); $x++) {
-  // if it's a valid page number...
-  if (($x > 0) && ($x <= $maxPages)) {
-     // if we're on current page...
-     if ($x == $currentpage) {
-        // 'highlight' it but don't make a link
-        echo " <a id='singlebutton' name='singlebutton' class='btn btn-danger' href='{$_SERVER['PHP_SELF']}?page=$x'>$x</a> ";
-     // if not current page...
-     } else {
-        // make it a link
-        echo " <a id='singlebutton' name='singlebutton' class='btn btn-primary' href='{$_SERVER['PHP_SELF']}?page=$x'>$x</a> ";
-     } // end else
-  } // end if 
-} // end for
+              // loop to show links to range of pages around current page
+              for ($x = ($currentpage - $range); $x < (($currentpage + $range) + 1); $x++) {
+                // if it's a valid page number...
+                if (($x > 0) && ($x <= $maxPages)) {
+                  // if we're on current page...
+                  if ($x == $currentpage) {
+                      // 'highlight' it but don't make a link
+                      echo " <a id='singlebutton' name='singlebutton' class='btn btn-danger' href='{$_SERVER['PHP_SELF']}?page=$x'>$x</a> ";
+                  // if not current page...
+                  } else {
+                      // make it a link
+                      echo " <a id='singlebutton' name='singlebutton' class='btn btn-primary' href='{$_SERVER['PHP_SELF']}?page=$x'>$x</a> ";
+                  } // end else
+                } // end if 
+              } // end for
 
-// if not on last page, show forward and last page links        
-if ($currentpage != $maxPages) {
-  // get next page
-  $nextpage = $currentpage + 1;
-   // echo forward link for next page 
-  echo " <a id='singlebutton' name='singlebutton' class='btn btn-primary' href='{$_SERVER['PHP_SELF']}?page=$nextpage'>></a> ";
-  // echo forward link for lastpage
-  echo " <a id='singlebutton' name='singlebutton' class='btn btn-primary' href='{$_SERVER['PHP_SELF']}?page=$maxPages'>>></a> ";
-}
+              // if not on last page, show forward and last page links        
+              if ($currentpage != $maxPages) {
+                // get next page
+                $nextpage = $currentpage + 1;
+                // echo forward link for next page 
+                echo " <a id='singlebutton' name='singlebutton' class='btn btn-primary' href='{$_SERVER['PHP_SELF']}?page=$nextpage'>></a> ";
+                // echo forward link for lastpage
+                echo " <a id='singlebutton' name='singlebutton' class='btn btn-primary' href='{$_SERVER['PHP_SELF']}?page=$maxPages'>>></a> ";
+              }
 ?>
 
 
@@ -292,24 +287,67 @@ if ($currentpage != $maxPages) {
 
     
 </div>
-
+<div class="fixed-bottom">
     <!-- Pagination-->
     <nav class="white">
       <ul class="pagination pg-red justify-content-center">
+      
+
+
         <li class="page-item">
-          <a class="page-link" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
+          <a id='singlebutton' name='singlebutton' class='page-link' aria-label="Previous" href='<?php echo $_SERVER['PHP_SELF'];?>?page=1'>
+            <i class="fas fa-angle-double-left"></i>
+            
             <span class="sr-only">Previous</span>
           </a>
         </li>
-        <li class="page-item active"><a class="page-link">1</a></li>
-        <li class="page-item pagination-hover-inactive"><a class="page-link">2</a></li>
-        <li class="page-item"><a class="page-link">3</a></li>
-        <li class="page-item"><a class="page-link">4</a></li>
-        <li class="page-item"><a class="page-link">5</a></li>
+
         <li class="page-item">
-          <a class="page-link" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
+          <a id='singlebutton' name='singlebutton' class='page-link' aria-label="Previous" href='<?php echo $_SERVER['PHP_SELF'];?>?page=<?php echo $prevpage;?>'>
+            <i class="fas fa-caret-left"></i>
+           
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <?php 
+        // loop to show links to range of pages around current page
+        for ($x = ($currentpage - $range); $x < (($currentpage + $range) + 1); $x++) {
+          // if it's a valid page number...
+          if (($x > 0) && ($x <= $maxPages)) {
+            // if we're on current page...
+            if ($x == $currentpage) {
+                // 'highlight' it but don't make a link
+                ?>
+                <li class="page-item active">
+                  <a id='singlebutton' name='singlebutton' class="page-link" href='<?php echo $_SERVER['PHP_SELF']?>?page=<?php echo $x;?>'><?php echo $x;?></a>
+                </li>
+                <?php
+                
+            // if not current page...
+            } else {
+                // make it a link
+                ?>
+                <li class="page-item pagination-hover-inactive">
+                  <a id='singlebutton' name='singlebutton' class="page-link" href='<?php echo $_SERVER['PHP_SELF']?>?page=<?php echo $x;?>'><?php echo $x;?></a>
+                </li>
+                <?php
+                
+            } // end else
+          } // end if 
+        } // end for
+        ?>
+        <li class="page-item">
+          <a id='singlebutton' name='singlebutton' class='page-link' aria-label="Next" href='<?php echo $_SERVER['PHP_SELF'];?>?page=<?php echo $nextpage;?>'>
+            <i class="fas fa-caret-right"></i>
+           
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+
+        <li class="page-item">
+          <a id='singlebutton' name='singlebutton' class='page-link' aria-label="Next" href='<?php echo $_SERVER['PHP_SELF'];?>?page=<?php echo $maxPages;?>'>
+            <i class="fas fa-angle-double-right"></i>
+            
             <span class="sr-only">Next</span>
           </a>
         </li>
@@ -320,7 +358,7 @@ if ($currentpage != $maxPages) {
 
 
     <!-- Footer --------------------------------------------------------------------------------------------------------->
-    <footer class="page-footer fixed-bottom font-small elegant-color-dark pt-4">
+    <footer class="page-footer  font-small elegant-color-dark pt-4">
       <!-- Social buttons -->
       <ul class="list-unstyled list-inline text-center">
         <li class="list-inline-item">
@@ -359,7 +397,7 @@ if ($currentpage != $maxPages) {
 
     </footer>
     <!-- Footer -->
-
+</div>
 <script src="./js/ajax_search.js"></script>
 <script src="./js/ajax_cart.js"></script>
 <!-- JQuery -->
