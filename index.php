@@ -170,9 +170,48 @@
     </div>
     <hr>
     </div>
-    <div class="col-4 ">
+    <div class="col-8">
     <h2 class="h2-responsive">Books</h2>
 <hr>
+<!-- rows for displaying books -->
+<?php 
+
+          include 'ajax/pagination.php';
+          if(isset($_POST['search'])) {
+            $whatToDisplay = $booksClass->searchButton($_POST['search']);
+
+          } else {
+            $whatToDisplay = $cursorPage;
+          }
+          
+          $category = (isset($_GET['category'])) ? $_GET['category'] : '';
+
+          echo "<div class='row' style='margin-bottom: 40px;'>";
+
+          $booksClass->display($category, $whatToDisplay);
+
+          echo "</div>";
+?>
+<script>
+$(document).ready(function(){
+  $('[data-toggle="popover"]').popover(); 
+});
+
+$(".titles").hover(
+  function(){
+  var fullTitle = $(this).attr("title");
+  $(this).text(fullTitle);
+  },
+  function(){
+  var shortTitle = $(this).text();
+  if(shortTitle.length >= 16){
+    shortTitle.substring(0, 16) + "..."
+  }
+  $(this).text(shortTitle);
+});
+</script>
+
+<!-- end  for displaying books -->
     </div>
     
    

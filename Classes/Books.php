@@ -64,33 +64,44 @@ class Books {
             foreach($queryBooks as $id => $value) {
                 $title = (strlen($value->bookTitle) <= 16) ? $value->bookTitle : substr($value->bookTitle, 0, 16). "...";
                 $picture = $value->bookImage;
-                echo "<div class='col-md-2' style='width: 170px; margin-top:30px;'>
-                    <img src='data:jpeg;base64,". base64_encode($picture->getData()) ."' style='width:100%; height:150px'>
-                    
-                    <strong 
-                        class='titles' 
-                        title='". $value->bookTitle ."'
-                        style='display:block;height:20px;'> ".  $title . "</strong>
-                    
-                    <br>
-                    <strong> Price: &euro;". $value->bookPrice . "</strong>
-                    <br>
-                    <button 
-                        class='col-md-5 btn btn-danger btn-sm' 
-                        role='button' 
-                        value='". $value->_id. "'
-                        onclick='ajaxBuy(this.value)'
-                        > Buy </button>
-                    <button 
-                        class='col-md-5 btn btn-info btn-sm' 
-                        role='button' 
-                        style='float: right;'
-                        data-toggle='popover'
-                        data-content='". $value->bookDescription ."'
-                        data-placement='bottom'
-                        data-trigger='focus'> Info </button>
+                echo '
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6">
+                <div class="card">
 
-                </div>";
+                <!-- Card image -->
+                <img class="card-img-top" src="data:jpeg;base64,'. base64_encode($picture->getData()) .' alt="Card image cap">
+
+                <!-- Card content -->
+                <div class="card-body">
+
+                    <!-- Title -->
+                    <h4 class="card-title" title="'. $value->bookTitle .'"><a>'.  $title . '</a></h4>
+                    
+                    <!-- Text -->
+                    <p class="card-text">Price: &euro;'. $value->bookPrice . '</p>
+                    
+                    <!-- Button -->
+                    <a href="#" class="btn btn-primary" role="button" 
+                    value="'. $value->_id. '"
+                    onclick="ajaxBuy(this.value)">Buy</a>
+                
+
+                </div>
+                </div>
+                </div>
+                </div>
+
+            </div>';
+
+                ?>
+
+              
+                        
+                        
+                
+                <?php
             }
         }
 
