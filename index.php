@@ -148,7 +148,37 @@
 
     
 
-
+  <div class="container elegant-color mt-5">
+  <div class="row">
+    <div class="col-4 info-color">
+    <h2 class="h2-responsive">Categories</h2>
+    <div class="list-group">
+    
+      <a href="http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php" class="list-group-item list-group-item-action active">All</a>
+     
+      <?php 
+          $query =$collection_books->find([],
+          ['projection' => ['bookCategory' => 1, '_id' => 0]]);
+          $distint = $collection_books->distinct('bookCategory', $query);
+          foreach($distint as $value)
+          {            
+        ?>
+            <a href='/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php?category=<?php echo $value;?>' class="list-group-item list-group-item-action"><?php echo $value;?></a>
+          <?php
+          }
+          ?>    
+    </div>
+    <hr>
+    </div>
+    <div class="col-4 ">
+    <h2 class="h2-responsive">Books</h2>
+<hr>
+    </div>
+    
+   
+  </div>
+  
+</div>
 
 
 
@@ -160,7 +190,7 @@
     <div class="col-sm-3 sidenav">
       <h4 >Categories</h4>
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1"></a></li>
+        <li class="active"><a href="#section1">link</a></li>
         <li><a href="http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php"> All </a></li>
         <?php 
           $query =$collection_books->find([],
@@ -225,68 +255,7 @@ $(".titles").hover(
 
 
 
-<!--footer-->
-      
 
-  <div class="navbar navbar-default navbar-fixed-bottom">
-
-<!--arrows - pagination-->
-<div  id="arrowsContainer" >
-    <div id="arrows">
-     <a id="singlebutton" name="singlebutton" class="btn btn-primary" href="http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php<?php echo $moveLeft; ?>" >
-          <span class="glyphicon glyphicon-chevron-left"></span>
-        </a> 
-        <?php 
-
-              
-              // if not on page 1, don't show back links
-              if ($currentpage > 1) {
-                // show << link to go back to page 1
-                echo " <a id='singlebutton' name='singlebutton' class='btn btn-primary' href='{$_SERVER['PHP_SELF']}?page=1'><<</a> ";
-                // get previous page num
-                $prevpage = $currentpage - 1;
-                // show < link to go back to 1 page
-                echo " <a id='singlebutton' name='singlebutton' class='btn btn-primary' href='{$_SERVER['PHP_SELF']}?page=$prevpage'><</a> ";
-              } // end if 
-
-              // loop to show links to range of pages around current page
-              for ($x = ($currentpage - $range); $x < (($currentpage + $range) + 1); $x++) {
-                // if it's a valid page number...
-                if (($x > 0) && ($x <= $maxPages)) {
-                  // if we're on current page...
-                  if ($x == $currentpage) {
-                      // 'highlight' it but don't make a link
-                      echo " <a id='singlebutton' name='singlebutton' class='btn btn-danger' href='{$_SERVER['PHP_SELF']}?page=$x'>$x</a> ";
-                  // if not current page...
-                  } else {
-                      // make it a link
-                      echo " <a id='singlebutton' name='singlebutton' class='btn btn-primary' href='{$_SERVER['PHP_SELF']}?page=$x'>$x</a> ";
-                  } // end else
-                } // end if 
-              } // end for
-
-              // if not on last page, show forward and last page links        
-              if ($currentpage != $maxPages) {
-                // get next page
-                $nextpage = $currentpage + 1;
-                // echo forward link for next page 
-                echo " <a id='singlebutton' name='singlebutton' class='btn btn-primary' href='{$_SERVER['PHP_SELF']}?page=$nextpage'>></a> ";
-                // echo forward link for lastpage
-                echo " <a id='singlebutton' name='singlebutton' class='btn btn-primary' href='{$_SERVER['PHP_SELF']}?page=$maxPages'>>></a> ";
-              }
-?>
-
-
-
-        <a id="singlebutton" name="singlebutton" class="btn btn-primary"  href="http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php<?php echo $moveRight; ?>" >
-          <span class="glyphicon glyphicon-chevron-right"></span> 
-        </a>
-    </div>
-</div>
-
-
-    
-</div>
 <div class="fixed-bottom">
     <!-- Pagination-->
     <nav class="white">
