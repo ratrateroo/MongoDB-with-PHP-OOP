@@ -83,6 +83,7 @@ class Users {
                 
                 //start up admin session
                 $_SESSION['admin_id'] = $document->_id;
+                $_SESSION['user_id'] = $document->_id;
             }
         }
         else {

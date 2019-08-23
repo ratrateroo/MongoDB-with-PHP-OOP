@@ -108,7 +108,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold"><i class="fas fa-book mr-2"></i>Add a new book</h4>
+        <h4 class="modal-title w-100 font-weight-bold"><i class="fas fa-book-open mr-2 text-primary"></i>Add a new book</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -117,7 +117,7 @@
         <div class="modal-body mx-3">
             <div class="form-group">
               <div class="md-form mb-5">
-                <i class="fas fa-user prefix grey-text"></i>
+                <i class="fas fa-book prefix grey-text"></i>
                 <input type="text" class="form-control " id="title" name="title" required>
                 <label  for="title">INSERT NEW BOOK TITLE:</label>
               </div>
@@ -210,7 +210,7 @@
             <tbody>
 
             <tr>
-                <th>Id</th>
+                <th><?php echo $userData->_id; ?></th>
                 <th><?php echo $userData->username; ?></th>
                 <th><?php echo $userData->password; ?></th>
                 <th><?php echo $userData->email; ?></th>

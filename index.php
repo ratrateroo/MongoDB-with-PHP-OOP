@@ -36,6 +36,13 @@
   if(isset($_SESSION['user_id'])) {
     
     $userData = $userClass->userData($_SESSION['user_id']);
+    $level = NULL;
+    //var_dump($userData->country);
+  } 
+
+  if(isset($_SESSION['admin_id'])) {
+    $userData = $userClass->userData($_SESSION['user_id']);
+    $level = "Admin";
     //var_dump($userData->country);
   } 
 
@@ -49,7 +56,7 @@
 
 
     <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark elegant-color">
+    <nav class="navbar navbar-expand-lg <?php echo isset($_SESSION['admin_id'])? 'danger-color-dark':'elegant-color' ?> navbar-dark ">
 
       <!-- Navbar brand -->
       <a class="navbar-brand" href="oldindex.php">Marcus Bookstore</a>
@@ -84,9 +91,12 @@
 
           
           <!-- Login Nav with Modal -->
-          <li class="nav-item">
-            <a href="#" class="nav-link" <?php echo isset($_SESSION['user_id']) ? '' : 'data-toggle="modal" data-target="#modalLoginForm"'; ?>>Login</a>
-          </li>
+          <?php if(!isset($_SESSION['user_id'])){ ?>
+            <li class="nav-item">
+              <a href="#" class="nav-link" data-toggle="modal" data-target="#modalLoginForm"; >Login</a>
+            </li>
+          <?php } ?>
+          
 
           
 
@@ -119,7 +129,7 @@
 
      <!-- Username info show modal -->
      <li class="nav-item">
-            <a class="nav-link" href="" data-toggle="modal" data-target="#userInfos"><i class="fas fa-user mr-1"></i><span class="glyphicon glyphicon-user">&nbsp;</span><?php echo isset($userData) ? $userData->username : 'No User';?> infos</a>
+            <a class="nav-link" href="" data-toggle="modal" data-target="#userInfos"><i class="fas fa-user mr-1"></i><span class="glyphicon glyphicon-user">&nbsp;</span><?php echo isset($userData) ? $level. ' '.$userData->username : 'No User';?> infos</a>
           </li>
 
 
@@ -198,11 +208,11 @@
 
 <script>
 
-// popovers Initialization
+
 // popovers Initialization
 $(function () {
-$('[data-toggle="popover"]').popover()
-})
+$('[data-toggle="popover"]').popover();
+});
 
 $(".titles").hover(
   function(){
@@ -236,7 +246,7 @@ $(".titles").hover(
 
 
 
-<div class="mycontainer container mt-5">
+<div class="mycontainer container mt-5 fixed-bottom">
   <div class="row align-items-center">
     <div class="col">
       <!-- Pagination-->
