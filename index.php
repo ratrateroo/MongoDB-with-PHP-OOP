@@ -19,6 +19,8 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 <!-- Material Design Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/css/mdb.min.css" rel="stylesheet">
+<link href="./css/styles.css" rel="stylesheet">
+
 <noscript>For full functionality of this page it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com" target="_blank"> instructions how to enable JavaScript in your web browser</a></noscript>
 </head>
 
@@ -148,7 +150,7 @@
 
     
 
-  <div class="container elegant-color mt-5">
+  <div class="container mt-5">
   <div class="row">
     <div class="col-4 info-color">
     <h2 class="h2-responsive">Categories</h2>
@@ -172,9 +174,8 @@
     </div>
     <div class="col-8">
     <h2 class="h2-responsive">Books</h2>
-<hr>
-<!-- rows for displaying books -->
-<?php 
+    <div class="row">
+    <?php 
 
           include 'ajax/pagination.php';
           if(isset($_POST['search'])) {
@@ -186,16 +187,22 @@
           
           $category = (isset($_GET['category'])) ? $_GET['category'] : '';
 
-          echo "<div class='row' style='margin-bottom: 40px;'>";
+          
 
           $booksClass->display($category, $whatToDisplay);
 
-          echo "</div>";
+          
 ?>
+    </div>
+<!-- rows for displaying books -->
+
 <script>
-$(document).ready(function(){
-  $('[data-toggle="popover"]').popover(); 
-});
+
+// popovers Initialization
+// popovers Initialization
+$(function () {
+$('[data-toggle="popover"]').popover()
+})
 
 $(".titles").hover(
   function(){
@@ -223,189 +230,132 @@ $(".titles").hover(
 
 
 
-<!--left side bar categories-->
-<div class="container-fluid" >
-  <div class="row content">
-    <div class="col-sm-3 sidenav">
-      <h4 >Categories</h4>
-      <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">link</a></li>
-        <li><a href="http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php"> All </a></li>
-        <?php 
-          $query =$collection_books->find([],
-          ['projection' => ['bookCategory' => 1, '_id' => 0]]);
 
-          
 
-          $distint = $collection_books->distinct('bookCategory', $query);
 
-          foreach($distint as $value) {
-            echo "<li><a href='http://localhost/MongoDB%20with%20PHP%20in%20OOP/MongoDB-with-PHP-OOP/index.php?category=$value'>" . $value . "</a></li>";
-          }
-        ?>
-      </ul><br>
+
+
+
+<div class="mycontainer container mt-5">
+  <div class="row align-items-center">
+    <div class="col">
+      <!-- Pagination-->
+      <nav class="white">
+        <ul class="pagination pg-red justify-content-center">
+        
+
+
+          <li class="page-item">
+            <a id='singlebutton' name='singlebutton' class='page-link' aria-label="Previous" href='<?php echo $_SERVER['PHP_SELF'];?>?page=1'>
+              <i class="fas fa-angle-double-left"></i>
+              
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+
+          <li class="page-item">
+            <a id='singlebutton' name='singlebutton' class='page-link' aria-label="Previous" href='<?php echo $_SERVER['PHP_SELF'];?>?page=<?php echo $prevpage;?>'>
+              <i class="fas fa-caret-left"></i>
+            
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          <?php 
+          // loop to show links to range of pages around current page
+          for ($x = ($currentpage - $range); $x < (($currentpage + $range) + 1); $x++) {
+            // if it's a valid page number...
+            if (($x > 0) && ($x <= $maxPages)) {
+              // if we're on current page...
+              if ($x == $currentpage) {
+                  // 'highlight' it but don't make a link
+                  ?>
+                  <li class="page-item active">
+                    <a id='singlebutton' name='singlebutton' class="page-link" href='<?php echo $_SERVER['PHP_SELF']?>?page=<?php echo $x;?>'><?php echo $x;?></a>
+                  </li>
+                  <?php
+                  
+              // if not current page...
+              } else {
+                  // make it a link
+                  ?>
+                  <li class="page-item pagination-hover-inactive">
+                    <a id='singlebutton' name='singlebutton' class="page-link" href='<?php echo $_SERVER['PHP_SELF']?>?page=<?php echo $x;?>'><?php echo $x;?></a>
+                  </li>
+                  <?php
+                  
+              } // end else
+            } // end if 
+          } // end for
+          ?>
+          <li class="page-item">
+            <a id='singlebutton' name='singlebutton' class='page-link' aria-label="Next" href='<?php echo $_SERVER['PHP_SELF'];?>?page=<?php echo $nextpage;?>'>
+              <i class="fas fa-caret-right"></i>
+            
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+
+          <li class="page-item">
+            <a id='singlebutton' name='singlebutton' class='page-link' aria-label="Next" href='<?php echo $_SERVER['PHP_SELF'];?>?page=<?php echo $maxPages;?>'>
+              <i class="fas fa-angle-double-right"></i>
+              
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- Pagination-->
     </div>
-<!--end left side bar categories-->
+  </div>
+  <div class="row align-items-center">
+    <div class="col">
+        <!-- Footer --------------------------------------------------------------------------------------------------------->
+        <footer class="page-footer  font-small elegant-color-dark pt-4">
+        <!-- Social buttons -->
+        <ul class="list-unstyled list-inline text-center">
+          <li class="list-inline-item">
+            <a class="btn-floating btn-fb mx-1">
+              <i class="fab fa-facebook-f"> </i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="btn-floating btn-tw mx-1">
+              <i class="fab fa-twitter"> </i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="btn-floating btn-gplus mx-1">
+              <i class="fab fa-google-plus-g"> </i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="btn-floating btn-li mx-1">
+              <i class="fab fa-linkedin-in"> </i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="btn-floating btn-dribbble mx-1">
+              <i class="fab fa-dribbble"> </i>
+            </a>
+          </li>
+        </ul>
+        <!-- Social buttons -->
 
-<!-- rows for displaying books -->
-<?php 
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2019 Copyright:
+          <a href="#">Marcus Bookstore Ltd.</a>
+        </div>
+        <!-- Copyright -->
 
-          include 'ajax/pagination.php';
-          if(isset($_POST['search'])) {
-            $whatToDisplay = $booksClass->searchButton($_POST['search']);
-
-          } else {
-            $whatToDisplay = $cursorPage;
-          }
+      </footer>
+      <!-- Footer -->
           
-          $category = (isset($_GET['category'])) ? $_GET['category'] : '';
-
-          echo "<div class='row' style='margin-bottom: 40px;'>";
-
-          $booksClass->display($category, $whatToDisplay);
-
-          echo "</div>";
-?>
-<script>
-$(document).ready(function(){
-  $('[data-toggle="popover"]').popover(); 
-});
-
-$(".titles").hover(
-  function(){
-  var fullTitle = $(this).attr("title");
-  $(this).text(fullTitle);
-  },
-  function(){
-  var shortTitle = $(this).text();
-  if(shortTitle.length >= 16){
-    shortTitle.substring(0, 16) + "..."
-  }
-  $(this).text(shortTitle);
-});
-</script>
-
-<!-- end  for displaying books -->
-
-
-
-
-
-
-
-
-
-<div class="fixed-bottom">
-    <!-- Pagination-->
-    <nav class="white">
-      <ul class="pagination pg-red justify-content-center">
-      
-
-
-        <li class="page-item">
-          <a id='singlebutton' name='singlebutton' class='page-link' aria-label="Previous" href='<?php echo $_SERVER['PHP_SELF'];?>?page=1'>
-            <i class="fas fa-angle-double-left"></i>
-            
-            <span class="sr-only">Previous</span>
-          </a>
-        </li>
-
-        <li class="page-item">
-          <a id='singlebutton' name='singlebutton' class='page-link' aria-label="Previous" href='<?php echo $_SERVER['PHP_SELF'];?>?page=<?php echo $prevpage;?>'>
-            <i class="fas fa-caret-left"></i>
-           
-            <span class="sr-only">Previous</span>
-          </a>
-        </li>
-        <?php 
-        // loop to show links to range of pages around current page
-        for ($x = ($currentpage - $range); $x < (($currentpage + $range) + 1); $x++) {
-          // if it's a valid page number...
-          if (($x > 0) && ($x <= $maxPages)) {
-            // if we're on current page...
-            if ($x == $currentpage) {
-                // 'highlight' it but don't make a link
-                ?>
-                <li class="page-item active">
-                  <a id='singlebutton' name='singlebutton' class="page-link" href='<?php echo $_SERVER['PHP_SELF']?>?page=<?php echo $x;?>'><?php echo $x;?></a>
-                </li>
-                <?php
-                
-            // if not current page...
-            } else {
-                // make it a link
-                ?>
-                <li class="page-item pagination-hover-inactive">
-                  <a id='singlebutton' name='singlebutton' class="page-link" href='<?php echo $_SERVER['PHP_SELF']?>?page=<?php echo $x;?>'><?php echo $x;?></a>
-                </li>
-                <?php
-                
-            } // end else
-          } // end if 
-        } // end for
-        ?>
-        <li class="page-item">
-          <a id='singlebutton' name='singlebutton' class='page-link' aria-label="Next" href='<?php echo $_SERVER['PHP_SELF'];?>?page=<?php echo $nextpage;?>'>
-            <i class="fas fa-caret-right"></i>
-           
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
-
-        <li class="page-item">
-          <a id='singlebutton' name='singlebutton' class='page-link' aria-label="Next" href='<?php echo $_SERVER['PHP_SELF'];?>?page=<?php echo $maxPages;?>'>
-            <i class="fas fa-angle-double-right"></i>
-            
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <!-- Pagination-->
-
-
-
-    <!-- Footer --------------------------------------------------------------------------------------------------------->
-    <footer class="page-footer  font-small elegant-color-dark pt-4">
-      <!-- Social buttons -->
-      <ul class="list-unstyled list-inline text-center">
-        <li class="list-inline-item">
-          <a class="btn-floating btn-fb mx-1">
-            <i class="fab fa-facebook-f"> </i>
-          </a>
-        </li>
-        <li class="list-inline-item">
-          <a class="btn-floating btn-tw mx-1">
-            <i class="fab fa-twitter"> </i>
-          </a>
-        </li>
-        <li class="list-inline-item">
-          <a class="btn-floating btn-gplus mx-1">
-            <i class="fab fa-google-plus-g"> </i>
-          </a>
-        </li>
-        <li class="list-inline-item">
-          <a class="btn-floating btn-li mx-1">
-            <i class="fab fa-linkedin-in"> </i>
-          </a>
-        </li>
-        <li class="list-inline-item">
-          <a class="btn-floating btn-dribbble mx-1">
-            <i class="fab fa-dribbble"> </i>
-          </a>
-        </li>
-      </ul>
-      <!-- Social buttons -->
-
-      <!-- Copyright -->
-      <div class="footer-copyright text-center py-3">© 2019 Copyright:
-        <a href="#">Marcus Bookstore Ltd.</a>
-      </div>
-      <!-- Copyright -->
-
-    </footer>
-    <!-- Footer -->
+          
+    </div>
+  </div>
 </div>
+
+
 <script src="./js/ajax_search.js"></script>
 <script src="./js/ajax_cart.js"></script>
 <!-- JQuery -->

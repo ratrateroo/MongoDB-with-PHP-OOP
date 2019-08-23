@@ -149,3 +149,63 @@ $finalUserData = isset($_SESSION['user_id']) ? $userClass->userData($_SESSION['u
 ?>
 <!-- Modal: modalCart -->
 <!--    Orders Modal End ======================================================================================================================-->
+
+
+
+
+<?php 
+ public function display($category = '', $cursor = NULL) {
+
+  if($category == '' && is_null($cursor)) {
+      $queryBooks = $this->collection_books->find([],['sort'=> ['bookTitle' => 1]]);
+  } 
+  else if($category != '') {
+      $queryBooks = $this->collection_books->find(['bookCategory' => $category], ['sort'=> ['bookTitle' => 1]]);
+  }
+
+  else if (!is_null($cursor)) {
+      $queryBooks = $cursor;
+  }
+
+  
+
+  foreach($queryBooks as $id => $value) {
+      $title = (strlen($value->bookTitle) <= 16) ? $value->bookTitle : substr($value->bookTitle, 0, 16). "...";
+      $picture = $value->bookImage;
+      echo '
+      <div class="container col-4">
+          <div class="row">
+              <div class="">
+      <div class="card">
+
+      <!-- Card image -->
+      <img class="card-img-top img-fluid z-depth-1" src="data/image;png;base64,'. base64_encode($picture->getData()) .' alt="thumbnail" class="img-thumbnail"
+      style="width:100%; height:150px">
+      
+
+      <!-- Card content -->
+      <div class="card-body">
+
+          <!-- Title -->
+          <h4 class="card-title" title="'. $value->bookTitle .'"><a>'.  $title .  '</a></h4>
+          
+          <!-- Text -->
+          <p class="card-text">Price: &euro;'. $value->bookPrice . '</p>
+          
+          <!-- Button -->
+          <a href="#" class="btn btn-primary" role="button" 
+          value="'. $value->_id. '"
+          onclick="ajaxBuy(this.value)">Buy</a>
+      
+
+      </div>
+      </div>
+      </div>
+      </div>
+
+  </div>';
+
+      
+  }
+}
+?>

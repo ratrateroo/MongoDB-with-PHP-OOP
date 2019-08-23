@@ -1,0 +1,12 @@
+.mycontainer {
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+}

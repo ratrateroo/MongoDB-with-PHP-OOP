@@ -62,46 +62,17 @@ class Books {
             
 
             foreach($queryBooks as $id => $value) {
-                $title = (strlen($value->bookTitle) <= 16) ? $value->bookTitle : substr($value->bookTitle, 0, 16). "...";
+                $croppedTitle = (strlen($value->bookTitle) <= 16) ? $value->bookTitle : substr($value->bookTitle, 0, 16). "...";
+                $title = $value->bookTitle;
                 $picture = $value->bookImage;
-                echo '
-                <div class="container">
-                    <div class="row">
-                        <div class="col-6">
-                <div class="card">
-
-                <!-- Card image -->
-                <img class="card-img-top" src="data:jpeg;base64,'. base64_encode($picture->getData()) .' alt="Card image cap">
-
-                <!-- Card content -->
-                <div class="card-body">
-
-                    <!-- Title -->
-                    <h4 class="card-title" title="'. $value->bookTitle .'"><a>'.  $title . '</a></h4>
-                    
-                    <!-- Text -->
-                    <p class="card-text">Price: &euro;'. $value->bookPrice . '</p>
-                    
-                    <!-- Button -->
-                    <a href="#" class="btn btn-primary" role="button" 
-                    value="'. $value->_id. '"
-                    onclick="ajaxBuy(this.value)">Buy</a>
+                $displayImage = base64_encode($picture->getData());
+                $price = $value->bookPrice;
+                $itemID = $value->_id;
+                $description = $value->bookDescription;
                 
+            include('bookstemplate.php');
 
-                </div>
-                </div>
-                </div>
-                </div>
-
-            </div>';
-
-                ?>
-
-              
-                        
-                        
                 
-                <?php
             }
         }
 
